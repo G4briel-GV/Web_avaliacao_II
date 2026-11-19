@@ -71,10 +71,18 @@
     <Content Include="App_Data\BancoDados_log.ldf">
       <DependentUpon>BancoDados.mdf</DependentUpon>
     </Content>
+    <Content Include="Mentor.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mentor.aspx.cs">
+      <DependentUpon>Mentor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mentor.aspx.designer.cs">
+      <DependentUpon>Mentor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

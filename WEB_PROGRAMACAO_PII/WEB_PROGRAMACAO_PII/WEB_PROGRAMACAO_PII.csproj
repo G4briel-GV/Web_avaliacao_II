@@ -67,6 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BancoDados.mdf" />
+    <Content Include="App_Data\BancoDados_log.ldf">
+      <DependentUpon>BancoDados.mdf</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

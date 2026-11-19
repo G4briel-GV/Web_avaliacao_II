@@ -483,9 +483,8 @@
           </div>
 
           <div class="cabecalho-acoes">
-            <button type="button" class="btn-login">
+              <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-login"/>
               <span class="btn-login-label">Login</span>
-            </button>
           </div>
         </div>
       </header>
@@ -512,12 +511,8 @@
             </p>
 
             <div class="hero-acoes">
-              <button type="button" class="btn-primario">
-                Agendar minha mentoria
-              </button>
-              <button type="button" class="btn-secundario">
-                Sou Mentor
-              </button>
+                <asp:Button ID="btnAgendar" runat="server" Text="Agendar minha mentoria" CssClass="btn-primario"/>
+                <asp:Button ID="btnMentor" runat="server" Text="Sou mentor" CssClass="btn-secundario"/>
             </div>
 
             <p class="hero-nota">No seu ritmo. Com orientação de verdade.</p>

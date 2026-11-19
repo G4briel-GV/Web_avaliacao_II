@@ -49,8 +49,8 @@
               "Title": "Principal.aspx",
               "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
               "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Principal.aspx",
+              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx*",
+              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Principal.aspx*",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2026-11-19T18:17:59.685Z",
@@ -67,6 +67,7 @@
               "RelativeToolTip": "SQLQuery1.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
               "WhenOpened": "2026-11-19T11:28:30.924Z",
+              "EditorCaption": "",
               "OwnerCaption": "%2 "
             }
           ]

@@ -71,11 +71,19 @@
     <Content Include="App_Data\BancoDados_log.ldf">
       <DependentUpon>BancoDados.mdf</DependentUpon>
     </Content>
+    <Content Include="Horarios_mentor.aspx" />
     <Content Include="Mentor.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Horarios_mentor.aspx.cs">
+      <DependentUpon>Horarios_mentor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Horarios_mentor.aspx.designer.cs">
+      <DependentUpon>Horarios_mentor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Mentor.aspx.cs">
       <DependentUpon>Mentor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

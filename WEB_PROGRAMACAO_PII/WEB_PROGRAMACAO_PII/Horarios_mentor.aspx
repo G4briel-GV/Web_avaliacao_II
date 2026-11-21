@@ -52,7 +52,6 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-
             <div class="mt-3">
                 <asp:Button ID="btnAdicionar" runat="server" Text="Adicionar Novo Horário" CssClass="btn btn-secondary" CausesValidation="false" />
                 <asp:Button ID="btnSalvar" runat="server" Text="Salvar Agenda" CssClass="btn btn-primary"/>

@@ -13,8 +13,12 @@ namespace WEB_PROGRAMACAO_PII
         {
             if (!IsPostBack)
             {
-                CriarTabelaVazia();
+                carregarHorarios();
             }
+        }
+        private void carregarHorarios()
+        {
+
         }
     }
 }

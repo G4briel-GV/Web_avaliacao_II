@@ -42,31 +42,13 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Label LblMentor;
 
         /// <summary>
-        /// Controle TxtMentor.
+        /// Controle ddlMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtMentor;
-
-        /// <summary>
-        /// Controle BtnSelecionarMentor.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSelecionarMentor;
-
-        /// <summary>
-        /// Controle LstMentores.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LstMentores;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMentor;
 
         /// <summary>
         /// Controle LblDisciplina.
@@ -78,67 +60,31 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Label LblDisciplina;
 
         /// <summary>
-        /// Controle TxtDisciplina.
+        /// Controle ddlDisciplina.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtDisciplina;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDisciplina;
 
         /// <summary>
-        /// Controle BtnSelecionarDisciplina.
+        /// Controle LblDia.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSelecionarDisciplina;
+        protected global::System.Web.UI.WebControls.Label LblDia;
 
         /// <summary>
-        /// Controle LstDisciplinas.
+        /// Controle ddlDia.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LstDisciplinas;
-
-        /// <summary>
-        /// Controle LblDias.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDias;
-
-        /// <summary>
-        /// Controle TxtDia.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtDia;
-
-        /// <summary>
-        /// Controle BtnSelecionarDia.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSelecionarDia;
-
-        /// <summary>
-        /// Controle LstDias.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LstDias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDia;
 
         /// <summary>
         /// Controle LblHorario.
@@ -150,31 +96,13 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Label LblHorario;
 
         /// <summary>
-        /// Controle TxtHorario.
+        /// Controle ddlHorario.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtHorario;
-
-        /// <summary>
-        /// Controle BtnSelecionarHorario.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSelecionarHorario;
-
-        /// <summary>
-        /// Controle LstHorarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LstHorarios;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHorario;
 
         /// <summary>
         /// Controle BtnAgendar.

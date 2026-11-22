@@ -42,13 +42,13 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Button BtnAgendarMentoria;
 
         /// <summary>
-        /// Controle LblMateriaProxima.
+        /// Controle LblDisciplina.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMateriaProxima;
+        protected global::System.Web.UI.WebControls.Label LblDisciplina;
 
         /// <summary>
         /// Controle LblMentor.
@@ -69,6 +69,15 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Label LblDtMentoria;
 
         /// <summary>
+        /// Controle LblDiaSemana.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblDiaSemana;
+
+        /// <summary>
         /// Controle LblHorarioProxima.
         /// </summary>
         /// <remarks>
@@ -78,22 +87,13 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.Label LblHorarioProxima;
 
         /// <summary>
-        /// Controle Label1.
+        /// Controle LblStatus.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// Controle BtnSolicitarRemarcacao.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSolicitarRemarcacao;
+        protected global::System.Web.UI.WebControls.Label LblStatus;
 
         /// <summary>
         /// Controle BtnComunicarAusencia.
@@ -103,14 +103,5 @@ namespace TelaAluno
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnComunicarAusencia;
-
-        /// <summary>
-        /// Controle GvHistoricoMentorias.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GvHistoricoMentorias;
     }
 }

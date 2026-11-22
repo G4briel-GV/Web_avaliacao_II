@@ -9,53 +9,28 @@ namespace TelaAluno
 {
     public partial class AgendarMentoria : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Carregar dados iniciais dos DropDownLists aqui depois
+            }
+        }
+
         protected void BtnVoltar_Click(object sender, EventArgs e)
         {
             Response.Redirect("TelaAluno.aspx");
         }
 
-        protected void BtnSelecionarMentor_Click(object sender, EventArgs e)
-        {
-            // Depois vamos colocar a lógica aqui
-        }
-
-        protected void BtnSelecionarDisciplina_Click(object sender, EventArgs e)
-        {
-            // Depois vamos colocar a lógica aqui
-        }
-
-        protected void BtnSelecionarDia_Click(object sender, EventArgs e)
-        {
-            // Depois vamos colocar a lógica aqui
-        }
-
-        protected void BtnSelecionarHorario_Click(object sender, EventArgs e)
-        {
-            // Depois vamos colocar a lógica aqui
-        }
-
         protected void BtnAgendar_Click(object sender, EventArgs e)
         {
-            // Depois vamos colocar a lógica aqui
+            // Pegar valores selecionados quando integrar o banco:
+            // string mentor = ddlMentor.SelectedValue;
+            // string disciplina = ddlDisciplina.SelectedValue;
+            // string dia = ddlDia.SelectedValue;
+            // string horario = ddlHorario.SelectedValue;
+
+            // Lógica de salvar no banco entra aqui depois
         }
-
-
-        protected void LstMentores_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void LstDisciplinas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-        
-        protected void LstDias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void LstHorarios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-
     }
 }

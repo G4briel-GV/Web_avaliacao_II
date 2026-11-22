@@ -72,41 +72,26 @@
         margin-bottom: 20px;
         }
 
-        .bloco-campo {
-        margin-bottom : 16px;
+        .campo-grupo {
+        margin-bottom: 14px;
         }
 
-        .linha-campo {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        }
-
-        .label-campo {
+        .campo-grupo span {
         display: block;
-        font-weight: bold;
+        font-weight: 600;
         margin-bottom: 6px;
+        color: #333;
         }
 
-        .campo-texto {
-        flex: 1;
-        padding: 10px;
-        font-size: 14px;
-        background-color: #f8f8f8;
-        border: 1px solid #c5d0d6;
+        .campo-select {
+        width: 100%;
+        height: 40px;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
         border-radius: 6px;
+        background-color: #fff;
+        font-size: 14px;
         box-sizing: border-box;
-        }
-
-        .btn-selecionar {
-        padding: 10px 14px;
-        font-size: 14px;
-        font-weight: bold;
-        background-color: #eef2f4;
-        color: #465d67;
-        border: 1px solid #c5d0d6;
-        border-radius: 6px;
-        cursor: pointer;
         }
 
         .area-agendar {
@@ -147,51 +132,26 @@
             <main class="card-agendamento">
                 <h2 class="titulo-card">Dados do Agendamento</h2>
 
-                <div class="bloco-campo">
-                    <asp:Label ID="LblMentor" runat="server" Text="Selecione o Mentor" CssClass="label-campo"></asp:Label>
-                
-                    <div class="linha-campo">
-                    <asp:TextBox ID="TxtMentor" runat="server" ReadOnly="true" CssClass="campo-texto"></asp:TextBox>
-                    <asp:Button ID="BtnSelecionarMentor" runat="server" Text="Selecionar Mentor" CssClass="btn-selecionar" OnClick="BtnSelecionarMentor_Click" />
-                    </div>
+               <div class="campo-grupo">
+                   <asp:Label ID="LblMentor" runat="server" Text="Selecione o Mentor"></asp:Label>
+                   <asp:DropDownList ID="ddlMentor" runat="server" CssClass="campo-select"></asp:DropDownList>
+               </div>
 
-                    <asp:ListBox ID="LstMentores" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="LstMentores_SelectedIndexChanged"></asp:ListBox>
-                </div>
+               <div class="campo-grupo">
+                   <asp:Label ID="LblDisciplina" runat="server" Text="Selecione a Disciplina"></asp:Label>
+                    <asp:DropDownList ID="ddlDisciplina" runat="server" CssClass="campo-select"></asp:DropDownList>
+               </div>
 
-                <div class="bloco-agendamento">
-                    <asp:Label ID="LblDisciplina" runat="server" Text="Selecione a Disciplina" CssClass="label-campo"></asp:Label>
-                
-                    <div class="linha-campo">
-                    <asp:TextBox ID="TxtDisciplina" runat="server" ReadOnly="true" CssClass="campo-texto"></asp:TextBox>
-                    <asp:Button ID="BtnSelecionarDisciplina" runat="server" Text="Selecionar Disciplina" CssClass="btn-selecionar" OnClick="BtnSelecionarDisciplina_Click" />
-                    </div>
+               <div class="campo-grupo">
+                   <asp:Label ID="LblDia" runat="server" Text="Selecione o Dia"></asp:Label>
+                    <asp:DropDownList ID="ddlDia" runat="server" CssClass="campo-select"></asp:DropDownList>
+               </div>
 
-                    <asp:ListBox ID="LstDisciplinas" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="LstDisciplinas_SelectedIndexChanged"></asp:ListBox>
-                </div>
+               <div class="campo-grupo">
+                   <asp:Label ID="LblHorario" runat="server" Text="Selecione o Horário"></asp:Label>
+                    <asp:DropDownList ID="ddlHorario" runat="server" CssClass="campo-select"></asp:DropDownList>
+               </div>
 
-                <div class="bloco-agendamento">
-                    <asp:Label ID="LblDias" runat="server" Text="Selecione o Dia (seg à sex)" CssClass="label-campo"></asp:Label>
-
-                    <div class="linha-campo">
-                    <asp:TextBox ID="TxtDia" runat="server" ReadOnly="true" CssClass="campo-texto"></asp:TextBox>
-                    <asp:Button ID="BtnSelecionarDia" runat="server" Text="Selecionar Dia" CssClass="btn-selecionar" OnClick="BtnSelecionarDia_Click" />
-                    </div>
-
-                    <asp:ListBox ID="LstDias" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="LstDias_SelectedIndexChanged"></asp:ListBox>
-                </div>
-
-                <div class="bloco-agendamento">
-                    <asp:Label ID="LblHorario" runat="server" Text="Selecione o Horário" CssClass="label-campo"></asp:Label>
-                
-                    <div class="linha-campo">
-                    <asp:TextBox ID="TxtHorario" runat="server" ReadOnly="true" CssClass="campo-texto"></asp:TextBox>
-                    <asp:Button ID="BtnSelecionarHorario" runat="server" Text="Selecionar Horário" CssClass="btn-selecionar" OnClick="BtnSelecionarHorario_Click" />
-                    </div>
-
-                    <asp:ListBox ID="LstHorarios" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="LstHorarios_SelectedIndexChanged"></asp:ListBox>
-                </div>
-
-                <br /><br />
                 <div class="area-agendar">
                     <asp:Button ID="BtnAgendar" runat="server" Text="Agendar" CssClass="btn-agendar" OnClick="BtnAgendar_Click"/>
                 </div>
@@ -200,3 +160,4 @@
     </form>
 </body>
 </html>
+

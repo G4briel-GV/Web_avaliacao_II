@@ -87,6 +87,7 @@
       padding: 0 22px;
       background-color: #ad0f0a;
       border: none;
+      color: #ffffff;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.15s ease;

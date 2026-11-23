@@ -25,7 +25,7 @@
             <h2 class="TextoInicial">Agenda Semanal do Mentor</h2>
             <p class="text-muted">Adicione os horários de atendimento para cada dia da semana.</p>
 
-            <asp:GridView ID="gvHorarios" runat="server" AutoGenerateColumns="false" DataKeyNames="id_disponibilidade" CssClass="table table-bordered table-striped">
+            <asp:GridView ID="gvHorarios" runat="server" AutoGenerateColumns="false" DataKeyNames="id_disponibilidade" CssClass="table table-bordered table-striped" OnRowCommand="gvHorarios_RowCommand">
                 <Columns>
                     <asp:TemplateField HeaderText="Dia da Semana">
                         <ItemTemplate>
@@ -61,7 +61,7 @@
                 </Columns>
             </asp:GridView>
             <div class="mt-3">
-                <asp:Button ID="btnAdicionar" runat="server" Text="Adicionar Novo Horário" CssClass="btn btn-secondary" CausesValidation="false" />
+                <asp:Button ID="btnAdicionar" runat="server" Text="Adicionar Novo Horário" CssClass="btn btn-secondary" CausesValidation="false" OnClick="btnAdicionar_Click"/>
                 <asp:Button ID="btnSalvar" runat="server" Text="Salvar Agenda" CssClass="btn btn-primary"/>
             </div>
         </div>

@@ -33,11 +33,45 @@ namespace WEB_PROGRAMACAO_PII
                 adaptador.Fill(tabela);
                 gvHorarios.DataSource = tabela;
                 gvHorarios.DataBind();
+                ViewState["tabela"] = tabela;
             }
             finally
             {
                 conexao.Close();
             }
+        }
+        protected void gvHorarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id_disponibilidade = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "Remover")
+            {
+                string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
+                SqlConnection conexao = new SqlConnection(cs);
+                try
+                {
+                    int id_aluno = 1;
+                    conexao.Open();
+                    SqlCommand comando = new SqlCommand("EXEC RemoverDisponibilidade @id_disponibilidade = @id_disponibilidade, @id_aluno = @id_aluno", conexao);
+                    comando.Parameters.AddWithValue("@id_disponibilidade", id_disponibilidade);
+                    comando.Parameters.AddWithValue("@id_aluno", id_aluno);
+                    comando.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexao.Close();
+                    carregarHorarios();
+                }
+            }
+        }
+        protected void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            DataTable tabela = (DataTable)ViewState["tabela"];
+            DataRow linha = tabela.NewRow();
+            linha["DiaSemana"] = "seg";
+            tabela.Rows.Add(linha);
+            ViewState["tabela"] = tabela;
+            gvHorarios.DataSource = tabela;
+            gvHorarios.DataBind();
         }
     }
 }

@@ -42,24 +42,37 @@ namespace WEB_PROGRAMACAO_PII
         }
         protected void gvHorarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id_disponibilidade = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "Remover")
             {
-                string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
-                SqlConnection conexao = new SqlConnection(cs);
-                try
+                if (string.IsNullOrEmpty(e.CommandArgument.ToString()))
                 {
-                    int id_aluno = 1;
-                    conexao.Open();
-                    SqlCommand comando = new SqlCommand("EXEC RemoverDisponibilidade @id_disponibilidade = @id_disponibilidade, @id_aluno = @id_aluno", conexao);
-                    comando.Parameters.AddWithValue("@id_disponibilidade", id_disponibilidade);
-                    comando.Parameters.AddWithValue("@id_aluno", id_aluno);
-                    comando.ExecuteNonQuery();
+                    GridViewRow linhaGrade = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                    int indice = linhaGrade.RowIndex;
+                    DataTable tabela = (DataTable)ViewState["tabela"];
+                    tabela.Rows.RemoveAt(indice);
+                    gvHorarios.DataBind();
+                    ViewState["tabela"] = tabela;
+                    gvHorarios.DataSource = tabela;
+                    gvHorarios.DataBind();
                 }
-                finally
-                {
-                    conexao.Close();
-                    carregarHorarios();
+                else {
+                    int id_disponibilidade = Convert.ToInt32((int)(e.CommandArgument));
+                    string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
+                    SqlConnection conexao = new SqlConnection(cs);
+                    try
+                    {
+                        int id_aluno = 1;
+                        conexao.Open();
+                        SqlCommand comando = new SqlCommand("EXEC RemoverDisponibilidade @id_disponibilidade = @id_disponibilidade, @id_aluno = @id_aluno", conexao);
+                        comando.Parameters.AddWithValue("@id_disponibilidade", id_disponibilidade);
+                        comando.Parameters.AddWithValue("@id_aluno", id_aluno);
+                        comando.ExecuteNonQuery();
+                    }
+                    finally
+                    {
+                        conexao.Close();
+                        carregarHorarios();
+                    }
                 }
             }
         }
@@ -67,7 +80,7 @@ namespace WEB_PROGRAMACAO_PII
         {
             DataTable tabela = (DataTable)ViewState["tabela"];
             DataRow linha = tabela.NewRow();
-            linha["DiaSemana"] = "seg";
+            linha["dia_semana"] = "seg";
             tabela.Rows.Add(linha);
             ViewState["tabela"] = tabela;
             gvHorarios.DataSource = tabela;

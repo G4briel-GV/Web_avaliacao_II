@@ -51,14 +51,14 @@
     }
 
     .pagina-inicial .logo-fatec-cruzeiro {
-      width: 154px;
-      height: 74px;
+      width: 170px;
+      height: 90px;
       object-fit: cover;
     }
 
     .pagina-inicial .logo-centro-paula {
-      width: 77px;
-      height: 52px;
+      width: 170px;
+      height: 90px;
       margin-left: -15px;
       aspect-ratio: 1.55;
       object-fit: cover;
@@ -69,7 +69,7 @@
       font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
       font-weight: 700;
       color: #465d67;
-      font-size: 36px;
+      font-size: 50px;
       letter-spacing: 0.1px;
       line-height: 44px;
     }
@@ -407,8 +407,9 @@
     }
 
     .pagina-inicial .rodape-brasao {
-      width: 73px;
-      height: 85px;
+      width: 130px;
+      height: 60px;
+      border-radius: 8px;
       aspect-ratio: 0.86;
       object-fit: cover;
     }
@@ -472,12 +473,12 @@
           <div class="cabecalho-marca">
             <img
               class="logo-fatec-cruzeiro"
-              src="img/logo-fatec-cruzeiro.png"
+              src="fatec_cruzeiro.jpg"
               alt="Fatec Cruzeiro – Prof. Waldomiro May"
             />
             <img
               class="logo-centro-paula"
-              src="img/logo-centro-paula-souza.png"
+              src="cps_img.jpg"
               alt="Centro Paula Souza"
             />
             <span class="titulo-sistema">Mentoria</span>
@@ -494,8 +495,8 @@
         <section class="secao-hero" aria-labelledby="titulo-hero">
           <img
             class="hero-imagem-fundo"
-            src="img/unsplash-z2thb-bs1ey.png"
-            alt="Estudantes conversando em ambiente acadêmico"
+            src="biblioteca.jpg"
+            alt="Biblioteca"
           />
           <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -599,7 +600,7 @@
 
             <img
               class="rodape-brasao"
-              src="img/image-1.png"
+              src="sp.png"
               alt="Governo do Estado de São Paulo"
             />
 

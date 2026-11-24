@@ -71,9 +71,13 @@
     <Content Include="App_Data\BancoDados_log.ldf">
       <DependentUpon>BancoDados.mdf</DependentUpon>
     </Content>
+    <Content Include="biblioteca.jpg" />
+    <Content Include="cps_img.jpg" />
+    <Content Include="fatec_cruzeiro.jpg" />
     <Content Include="Horarios_mentor.aspx" />
     <Content Include="Mentor.aspx" />
     <Content Include="Principal.aspx" />
+    <Content Include="sp.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

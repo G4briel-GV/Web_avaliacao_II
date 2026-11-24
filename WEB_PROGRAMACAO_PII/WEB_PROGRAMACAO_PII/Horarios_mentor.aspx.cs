@@ -12,6 +12,35 @@ namespace WEB_PROGRAMACAO_PII
 {
     public partial class Horarios_mentor : System.Web.UI.Page
     {
+        private void lerGradeParaTabela()
+        {
+            DataTable tabela = (DataTable)ViewState["tabela"];
+            for (int i = 0; i < gvHorarios.Rows.Count; i++)
+            {
+                DropDownList ddl = (DropDownList)gvHorarios.Rows[i].FindControl("ddlDiaSemana");
+                tabela.Rows[i]["dia_semana"] = ddl.SelectedValue;
+                TextBox txtInicio = (TextBox)gvHorarios.Rows[i].FindControl("txtHoraInicio");
+                if (string.IsNullOrWhiteSpace(txtInicio.Text))
+                {
+                    tabela.Rows[i]["inicio"] = DBNull.Value;
+                }
+                else
+                {
+                    tabela.Rows[i]["inicio"] = TimeSpan.Parse(txtInicio.Text);
+                }
+
+                TextBox txtFim = (TextBox)gvHorarios.Rows[i].FindControl("txtHoraFim");
+                if (string.IsNullOrWhiteSpace(txtFim.Text))
+                {
+                    tabela.Rows[i]["fim"] = DBNull.Value;
+                }
+                else
+                {
+                    tabela.Rows[i]["fim"] = TimeSpan.Parse(txtFim.Text);
+                }
+            }
+            ViewState["tabela"] = tabela;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,19 +73,19 @@ namespace WEB_PROGRAMACAO_PII
         {
             if (e.CommandName == "Remover")
             {
+                lerGradeParaTabela();
                 if (string.IsNullOrEmpty(e.CommandArgument.ToString()))
                 {
                     GridViewRow linhaGrade = (GridViewRow)((Control)e.CommandSource).NamingContainer;
                     int indice = linhaGrade.RowIndex;
                     DataTable tabela = (DataTable)ViewState["tabela"];
                     tabela.Rows.RemoveAt(indice);
-                    gvHorarios.DataBind();
                     ViewState["tabela"] = tabela;
                     gvHorarios.DataSource = tabela;
                     gvHorarios.DataBind();
                 }
                 else {
-                    int id_disponibilidade = Convert.ToInt32((int)(e.CommandArgument));
+                    int id_disponibilidade = Convert.ToInt32((e.CommandArgument));
                     string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
                     SqlConnection conexao = new SqlConnection(cs);
                     try
@@ -71,13 +100,20 @@ namespace WEB_PROGRAMACAO_PII
                     finally
                     {
                         conexao.Close();
-                        carregarHorarios();
                     }
+                    GridViewRow linhaGrade = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                    int indice = linhaGrade.RowIndex;
+                    DataTable tabela = (DataTable)ViewState["tabela"];
+                    tabela.Rows.RemoveAt(indice);
+                    ViewState["tabela"] = tabela;
+                    gvHorarios.DataSource = tabela;
+                    gvHorarios.DataBind();
                 }
             }
         }
         protected void btnAdicionar_Click(object sender, EventArgs e)
         {
+            lerGradeParaTabela();
             DataTable tabela = (DataTable)ViewState["tabela"];
             DataRow linha = tabela.NewRow();
             linha["dia_semana"] = "seg";

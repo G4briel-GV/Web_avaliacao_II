@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -32,6 +32,7 @@
               "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx",
               "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx",
               "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2026-11-20T20:03:02.385Z",
               "IsPinned": true,
@@ -44,28 +45,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Principal.aspx",
-              "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Principal.aspx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2026-11-23T11:46:18.063Z",
-              "EditorCaption": "",
-              "OwnerCaption": "%2"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Horarios_mentor.aspx.cs",
               "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
               "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
               "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
               "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAcwFIAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAYwGYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-20T20:22:34.701Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Principal.aspx",
+              "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
+              "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Principal.aspx",
+              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Principal.aspx",
+              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Principal.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-11-23T11:46:18.063Z",
               "EditorCaption": "",
               "OwnerCaption": "%2"
             }

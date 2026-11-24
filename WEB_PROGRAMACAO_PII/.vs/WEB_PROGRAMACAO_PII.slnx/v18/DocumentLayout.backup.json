@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -36,11 +36,26 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2026-11-20T20:03:02.385Z",
               "IsPinned": true,
+              "EditorCaption": "",
               "OwnerCaption": "%2"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Horarios_mentor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
+              "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
+              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs*",
+              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs*",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAYwGYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T20:22:34.701Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -53,19 +68,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2026-11-23T11:46:18.063Z",
-              "OwnerCaption": "%2"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Horarios_mentor.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
-              "RelativeDocumentMoniker": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
-              "ToolTip": "C:\\Users\\huber\\Desktop\\Courses\\FATEC\\ADS_2S\\PWeb\\A001_P_II\\Web_avaliacao_II\\WEB_PROGRAMACAO_PII\\WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
-              "RelativeToolTip": "WEB_PROGRAMACAO_PII\\Horarios_mentor.aspx.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAQwDcAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T20:22:34.701Z",
               "EditorCaption": "",
               "OwnerCaption": "%2"
             }

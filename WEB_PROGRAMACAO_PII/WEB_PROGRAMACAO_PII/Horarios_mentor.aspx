@@ -55,7 +55,7 @@
 
                     <asp:TemplateField HeaderText="Ações">
                         <ItemTemplate>
-                            <asp:Button ID="btnRemover" runat="server" CommandArgument='<%# Eval("id_disponibilidade") %>' Text="Remover" CssClass="btn btn-danger btn-sm" CausesValidation="false" />
+                            <asp:Button ID="btnRemover" CommandName="Remover" runat="server" CommandArgument='<%# Eval("id_disponibilidade") %>' Text="Remover" CssClass="btn btn-danger btn-sm" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

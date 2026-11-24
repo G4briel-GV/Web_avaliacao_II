@@ -67,26 +67,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgendarMentoria.aspx" />
     <Content Include="App_Data\BancoDados.mdf" />
     <Content Include="App_Data\BancoDados_log.ldf">
       <DependentUpon>BancoDados.mdf</DependentUpon>
     </Content>
     <Content Include="biblioteca.jpg" />
     <Content Include="cps_img.jpg" />
+    <Content Include="Diretoria.aspx" />
+    <Content Include="FATEC.png" />
     <Content Include="fatec_cruzeiro.jpg" />
     <Content Include="Horarios_mentor.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Mentor.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="sp.png" />
+    <Content Include="TelaAluno.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendarMentoria.aspx.cs">
+      <DependentUpon>AgendarMentoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgendarMentoria.aspx.designer.cs">
+      <DependentUpon>AgendarMentoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Diretoria.aspx.cs">
+      <DependentUpon>Diretoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Horarios_mentor.aspx.cs">
       <DependentUpon>Horarios_mentor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Horarios_mentor.aspx.designer.cs">
       <DependentUpon>Horarios_mentor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Mentor.aspx.cs">
       <DependentUpon>Mentor.aspx</DependentUpon>
@@ -103,6 +123,13 @@
       <DependentUpon>Principal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TelaAluno.aspx.cs">
+      <DependentUpon>TelaAluno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TelaAluno.aspx.designer.cs">
+      <DependentUpon>TelaAluno.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

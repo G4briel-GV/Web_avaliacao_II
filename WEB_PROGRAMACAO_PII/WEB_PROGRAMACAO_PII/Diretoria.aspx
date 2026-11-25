@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Diretoria.aspx.cs" Inherits="WEB_PROGRAMACAO_PII.Diretoria" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Diretoria.aspx.cs" Inherits="WEB_PROGRAMACAO_PII.Diretoria" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head runat="server">

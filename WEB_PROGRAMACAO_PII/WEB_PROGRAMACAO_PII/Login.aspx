@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="WEB_PROGRAMACAO_PII.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WEB_PROGRAMACAO_PII.Login" %>
 
 <!DOCTYPE html>
 <html lang="pt-BR">

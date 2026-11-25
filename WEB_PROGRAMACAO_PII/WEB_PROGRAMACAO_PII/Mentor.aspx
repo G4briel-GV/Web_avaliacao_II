@@ -434,7 +434,8 @@
         text-align: left;
       }
 
-      .pagina-mentoria-detalhes .tabela-alunos thead {
+      .pagina-mentoria-detalhes .tabela-alunos thead,
+      .pagina-mentoria-detalhes .tabela-alunos tr.cabecalho-grid {
         background-color: #f4f6f7;
       }
 
@@ -469,7 +470,7 @@
         vertical-align: middle;
       }
 
-      .pagina-mentoria-detalhes .tabela-alunos tbody tr:last-child td {
+      .pagina-mentoria-detalhes .tabela-alunos tr:last-child td {
         border-bottom: none;
       }
 
@@ -713,80 +714,53 @@
                         <h2 id="titulo-lista-alunos" class="card-secao-titulo">
                           Lista de Alunos
                         </h2>
-                        <span class="card-secao-meta">4 alunos</span>
+                        <asp:Label ID="lblTotalAlunos" runat="server" CssClass="card-secao-meta" Text="0 alunos"></asp:Label>
                       </header>
 
                       <div class="tabela-wrapper">
-                        <table class="tabela-alunos">
-                          <thead>
-                            <tr>
-                              <th>Aluno</th>
-                              <th>Curso / semestre</th>
-                              <th class="coluna-situacao">Situação</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="celula-aluno">Ana Clara Santos</td>
-                              <td class="celula-curso">ADS · 1º semestre</td>
-                              <td>
-                                <div class="grupo-situacao">
-                                  <button type="button" class="btn-situacao btn-situacao--presente">
-                                    Presente
-                                  </button>
-                                  <button type="button" class="btn-situacao btn-situacao--ausente">
-                                    Ausente
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
+                        <asp:GridView ID="gvAlunos" runat="server"
+                            AutoGenerateColumns="False"
+                            CssClass="tabela-alunos"
+                            GridLines="None"
+                            OnRowCommand="gvAlunos_RowCommand">
+                            <HeaderStyle CssClass="cabecalho-grid" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Aluno">
+                                    <ItemTemplate>
+                                        <span class="celula-aluno"><%# Eval("NomeAluno") %></span>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <tr>
-                              <td class="celula-aluno">Bruno Almeida</td>
-                              <td class="celula-curso">ADS · 1º semestre</td>
-                              <td>
-                                <div class="grupo-situacao">
-                                  <button type="button" class="btn-situacao btn-situacao--presente">
-                                    Presente
-                                  </button>
-                                  <button type="button" class="btn-situacao btn-situacao--ausente">
-                                    Ausente
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
+                                <asp:TemplateField HeaderText="Curso / semestre">
+                                    <ItemTemplate>
+                                        <span class="celula-curso"><%# Eval("CursoSemestre") %></span>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            <tr>
-                              <td class="celula-aluno">Camila Rodrigues</td>
-                              <td class="celula-curso">ADS · 1º semestre</td>
-                              <td>
-                                <div class="grupo-situacao">
-                                  <button type="button" class="btn-situacao btn-situacao--presente">
-                                    Presente
-                                  </button>
-                                  <button type="button" class="btn-situacao btn-situacao--ausente">
-                                    Ausente
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
+                                <asp:TemplateField HeaderText="Situação">
+                                    <HeaderStyle CssClass="coluna-situacao" />
+                                    <ItemTemplate>
+                                        <div class="grupo-situacao">
+                                            <asp:LinkButton ID="btnPresente" runat="server"
+                                                CommandName="Presente"
+                                                CommandArgument='<%# Eval("IdAluno") %>'
+                                                CausesValidation="false"
+                                                CssClass="btn-situacao btn-situacao--presente">
+                                                Presente
+                                            </asp:LinkButton>
 
-                            <tr>
-                              <td class="celula-aluno">Pedro Henrique Costa</td>
-                              <td class="celula-curso">ADS · 1º semestre</td>
-                              <td>
-                                <div class="grupo-situacao">
-                                  <button type="button" class="btn-situacao btn-situacao--presente">
-                                    Presente
-                                  </button>
-                                  <button type="button" class="btn-situacao btn-situacao--ausente">
-                                    Ausente
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                            <asp:LinkButton ID="btnAusente" runat="server"
+                                                CommandName="Ausente"
+                                                CommandArgument='<%# Eval("IdAluno") %>'
+                                                CausesValidation="false"
+                                                CssClass="btn-situacao btn-situacao--ausente">
+                                                Ausente
+                                            </asp:LinkButton>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                       </div>
 
                       <div class="rodape-tabela-alunos">

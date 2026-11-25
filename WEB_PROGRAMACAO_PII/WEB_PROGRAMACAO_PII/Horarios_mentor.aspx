@@ -62,8 +62,9 @@
             </asp:GridView>
             <div class="mt-3">
                 <asp:Button ID="btnAdicionar" runat="server" Text="Adicionar Novo Horário" CssClass="btn btn-secondary" CausesValidation="false" OnClick="btnAdicionar_Click"/>
-                <asp:Button ID="btnSalvar" runat="server" Text="Salvar Agenda" CssClass="btn btn-primary"/>
+                <asp:Button ID="btnSalvar" runat="server" Text="Salvar Agenda" CssClass="btn btn-primary" OnClick="btnSalvar_Click"/>
             </div>
+            <asp:Label ID="lblMensagem" runat="server"></asp:Label>
         </div>
     </form>
 </body>

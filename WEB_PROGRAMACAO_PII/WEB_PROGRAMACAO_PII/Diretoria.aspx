@@ -522,15 +522,11 @@
                     <div class="cabecalho-marca">
                         <img
                             class="logo-fatec-cruzeiro"
-                            src="img/logo-fatec-cruzeiro.png"
+                            src="FATEC.png"
                             alt="Fatec Cruzeiro – Prof. Waldomiro May"
                         />
-                        <img
-                            class="logo-centro-paula"
-                            src="img/logo-centro-paula-souza.png"
-                            alt="Centro Paula Souza"
-                        />
-                        <span class="titulo-sistema">Mentoria</span>
+                       
+                        <span class="titulo-sistema">Coordenação</span>
                     </div>
                     <div class="cabecalho-acoes">
                         <div class="perfil-usuario">

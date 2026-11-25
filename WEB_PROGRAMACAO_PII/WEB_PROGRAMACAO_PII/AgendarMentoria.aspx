@@ -134,7 +134,7 @@
 
                <div class="campo-grupo">
                    <asp:Label ID="LblMentor" runat="server" Text="Selecione o Mentor"></asp:Label>
-                   <asp:DropDownList ID="ddlMentor" runat="server" CssClass="campo-select"></asp:DropDownList>
+                   <asp:DropDownList ID="ddlMentor" runat="server" CssClass="campo-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMentor_SelectedIndexChanged"></asp:DropDownList>
                </div>
 
                <div class="campo-grupo">
@@ -144,13 +144,15 @@
 
                <div class="campo-grupo">
                    <asp:Label ID="LblDia" runat="server" Text="Selecione o Dia"></asp:Label>
-                    <asp:DropDownList ID="ddlDia" runat="server" CssClass="campo-select"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlDia" runat="server" CssClass="campo-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged"></asp:DropDownList>
                </div>
 
                <div class="campo-grupo">
                    <asp:Label ID="LblHorario" runat="server" Text="Selecione o Horário"></asp:Label>
                     <asp:DropDownList ID="ddlHorario" runat="server" CssClass="campo-select"></asp:DropDownList>
                </div>
+
+                <asp:Label ID="lblMensagem" runat="server" CssClass="mensagem-status" Visible="false"></asp:Label>
 
                 <div class="area-agendar">
                     <asp:Button ID="BtnAgendar" runat="server" Text="Agendar" CssClass="btn-agendar" OnClick="BtnAgendar_Click"/>

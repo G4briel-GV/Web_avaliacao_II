@@ -73,6 +73,7 @@
       <DependentUpon>BancoDados.mdf</DependentUpon>
     </Content>
     <Content Include="biblioteca.jpg" />
+    <Content Include="ConfirmaMentoria.aspx" />
     <Content Include="cps_img.jpg" />
     <Content Include="Diretoria.aspx" />
     <Content Include="FATEC.png" />
@@ -92,6 +93,13 @@
     </Compile>
     <Compile Include="AgendarMentoria.aspx.designer.cs">
       <DependentUpon>AgendarMentoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmaMentoria.aspx.cs">
+      <DependentUpon>ConfirmaMentoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmaMentoria.aspx.designer.cs">
+      <DependentUpon>ConfirmaMentoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Diretoria.aspx.cs">
       <DependentUpon>Diretoria.aspx</DependentUpon>

@@ -130,6 +130,12 @@
     <Compile Include="TelaAluno.aspx.designer.cs">
       <DependentUpon>TelaAluno.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Diretoria.aspx.designer.cs">
+      <DependentUpon>Diretoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

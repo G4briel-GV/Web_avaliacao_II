@@ -91,20 +91,14 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.15s ease;
+      font-family: "Roboto", Helvetica, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.1px;
     }
 
     .pagina-inicial .btn-login:hover {
       background-color: #920c08;
-    }
-
-    .pagina-inicial .btn-login-label {
-      font-family: var(--m3-label-large-font-family, "Roboto", Helvetica, sans-serif);
-      font-weight: var(--m3-label-large-font-weight, 500);
-      font-size: var(--m3-label-large-font-size, 14px);
-      letter-spacing: var(--m3-label-large-letter-spacing, 0.1px);
-      line-height: var(--m3-label-large-line-height, 20px);
-      color: var(--m3-schemes-on-primary, #ffffff);
-      white-space: nowrap;
     }
 
     .pagina-inicial .conteudo-principal {
@@ -485,8 +479,7 @@
           </div>
 
           <div class="cabecalho-acoes">
-              <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-login"/>
-              <span class="btn-login-label">Login</span>
+              <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-login" OnClick="btnLogin_Click"/>
           </div>
         </div>
       </header>
@@ -513,8 +506,8 @@
             </p>
 
             <div class="hero-acoes">
-                <asp:Button ID="btnAgendar" runat="server" Text="Agendar minha mentoria" CssClass="btn-primario"/>
-                <asp:Button ID="btnMentor" runat="server" Text="Sou mentor" CssClass="btn-secundario"/>
+                <asp:Button ID="btnAgendar" runat="server" Text="Agendar minha mentoria" CssClass="btn-primario" OnClick="btnAgendar_Click"/>
+                <asp:Button ID="btnMentor" runat="server" Text="Sou mentor" CssClass="btn-secundario" OnClick="btnMentor_Click"/>
             </div>
 
             <p class="hero-nota">No seu ritmo. Com orientação de verdade.</p>

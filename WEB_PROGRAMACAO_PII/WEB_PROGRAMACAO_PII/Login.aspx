@@ -60,8 +60,8 @@
         }
 
         .pagina-login .logo-centro-paula {
-            width: 77px;
-            height: 52px;
+            width: 120px;
+            height: 90px;
             margin-left: -15px;
             aspect-ratio: 1.55;
             object-fit: cover;
@@ -339,12 +339,12 @@
                     <div class="cabecalho-marca">
                         <img
                             class="logo-fatec-cruzeiro"
-                            src="img/logo-fatec-cruzeiro.png"
+                            src="img/fatec_cruzeiro.jpg"
                             alt="Fatec Cruzeiro – Prof. Waldomiro May"
                         />
                         <img
                             class="logo-centro-paula"
-                            src="img/logo-centro-paula-souza.png"
+                            src="img/cps_img.jpg"
                             alt="Centro Paula Souza"
                         />
                         <span class="titulo-sistema">Mentoria</span>
@@ -357,7 +357,7 @@
                 <div class="fundo-biblioteca" aria-hidden="true">
                     <img
                         class="nova-imagem"
-                        src="img/nova-imagem-biblioteca.png"
+                        src="alunos.jpg"
                         alt=""
                     />
                     <div class="escurecimento-preto"></div>
@@ -374,11 +374,6 @@
                                 Entre com seu e-mail institucional para continuar.
                             </p>
                         </div>
-                        <img
-                            class="icone-acesso"
-                            src="img/cone-de-acesso.svg"
-                            alt="Ícone de acesso"
-                        />
                     </header>
 
                     <div class="form-login">

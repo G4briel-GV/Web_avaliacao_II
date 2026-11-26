@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgendarMentoria.aspx" />
+    <Content Include="alunos.jpg" />
     <Content Include="App_Data\BancoDados.mdf" />
     <Content Include="App_Data\BancoDados_log.ldf">
       <DependentUpon>BancoDados.mdf</DependentUpon>

@@ -30,27 +30,35 @@ namespace WEB_PROGRAMACAO_PII
             }
 
             string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
-            SqlConnection conexao = new SqlConnection(cs);
             DataTable resultado = new DataTable();
+
             try
             {
-                SqlCommand comando = new SqlCommand("EXEC ValidarLogin @email, @senha", conexao);
-                comando.Parameters.AddWithValue("@email", email);
-                comando.Parameters.AddWithValue("@senha", senha);
-                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                adaptador.Fill(resultado);
+                using (SqlConnection conexao = new SqlConnection(cs))
+                using (SqlCommand comando = new SqlCommand("EXEC ValidarLogin @email, @senha", conexao))
+                {
+                    comando.Parameters.AddWithValue("@email", email);
+                    comando.Parameters.AddWithValue("@senha", senha);
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                    {
+                        adaptador.Fill(resultado);
+                    }
+                }
             }
-            finally
+            catch (Exception ex)
             {
-                conexao.Close();
+                lblMensagem.Text = "Erro ao validar login: " + ex.Message;
+                lblMensagem.Visible = true;
+                return;
             }
+
             if (resultado.Rows.Count == 0)
             {
                 lblMensagem.Text = "E-mail ou senha incorretos.";
                 lblMensagem.Visible = true;
                 return;
             }
-            
+
             Session.Clear();
             Session["id_usuario"] = Convert.ToInt32(resultado.Rows[0]["id_usuario"]);
 
@@ -60,19 +68,22 @@ namespace WEB_PROGRAMACAO_PII
                 if (resultado.Rows[0]["mentor"].ToString() == "S")
                 {
                     Session["tipo_usuario"] = "mentor";
-                    Response.Redirect("Mentor.aspx");
+                    Response.Redirect("Mentor.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
                     Session["tipo_usuario"] = "aluno";
-                    Response.Redirect("TelaAluno.aspx");
+                    Response.Redirect("TelaAluno.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
-            } 
+            }
             else if (resultado.Rows[0]["id_coordenacao"] != DBNull.Value)
             {
                 Session["id_coordenacao"] = Convert.ToInt32(resultado.Rows[0]["id_coordenacao"]);
                 Session["tipo_usuario"] = "coordenacao";
-                Response.Redirect("Diretoria.aspx");
+                Response.Redirect("Diretoria.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
@@ -80,8 +91,6 @@ namespace WEB_PROGRAMACAO_PII
                 lblMensagem.Text = "Usuário sem perfil de acesso. Procure a secretaria.";
                 lblMensagem.Visible = true;
             }
-
-
         }
 
         // Link "Esqueci a senha."

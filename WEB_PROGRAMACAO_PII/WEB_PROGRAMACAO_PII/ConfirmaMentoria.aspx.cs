@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,9 +11,9 @@ namespace WEB_PROGRAMACAO_PII
         {
             if (!IsPostBack)
             {
-                if (Session["AlunoId"] == null)
+                if (Session["id_aluno"] == null)
                 {
-                    Response.Redirect("TelaLogin.aspx", false);
+                    Response.Redirect("Login.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
@@ -43,6 +41,7 @@ namespace WEB_PROGRAMACAO_PII
 
         protected void BtnVoltar_Click(object sender, EventArgs e)
         {
+            Session.Remove("NomeAluno");
             Session.Remove("MentorNome");
             Session.Remove("DisciplinaNome");
             Session.Remove("DataMentoria");
@@ -51,6 +50,5 @@ namespace WEB_PROGRAMACAO_PII
             Response.Redirect("TelaAluno.aspx", false);
             Context.ApplicationInstance.CompleteRequest();
         }
-
     }
 }

@@ -82,15 +82,15 @@
     <form id="form1" runat="server">
         <header class="cabecalho">
             <div class="conteudo-cabecalho">
-            <div>
-                <img class="logo-sistema" src="FATEC.png" alt="Logo do sistema" />
-                <span class="titulo-cabecalho">Área do Aluno</span>
+                <div>
+                    <img class="logo-sistema" src="FATEC.png" alt="Logo do sistema" />
+                    <span class="titulo-cabecalho">Área do Aluno</span>
+                </div>
+                <asp:Button ID="BtnVoltar" runat="server" Text="Voltar" CssClass="btnSair" OnClick="BtnVoltar_Click" />
             </div>
-        <asp:Button ID="BtnVoltar" runat="server" Text="Voltar" CssClass="btnSair" OnClick="BtnVoltar_Click" />
-    </div>
-</header>
- 
-<section class="card">
+        </header>
+
+        <section class="card">
             <h2 class="titulo-card">Agendamento Confirmado</h2>
             <asp:Label ID="LblMensagemConfirmacao" runat="server" CssClass="mensagem-confirmacao"></asp:Label>
         </section>

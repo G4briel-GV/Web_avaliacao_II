@@ -10,7 +10,7 @@ namespace WEB_PROGRAMACAO_PII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["tipo_usuario"] != null || Session["tipo_usuario"].ToString() != "coordenacao")
+            if (Session["tipo_usuario"] == null || Session["tipo_usuario"].ToString() != "coordenacao")
             {
                 Response.Redirect("Login.aspx");
                 return;

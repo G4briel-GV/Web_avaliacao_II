@@ -84,7 +84,8 @@ namespace WEB_PROGRAMACAO_PII
                     gvHorarios.DataSource = tabela;
                     gvHorarios.DataBind();
                 }
-                else {
+                else
+                {
                     int id_disponibilidade = Convert.ToInt32((e.CommandArgument));
                     string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
                     SqlConnection conexao = new SqlConnection(cs);
@@ -129,63 +130,67 @@ namespace WEB_PROGRAMACAO_PII
 
             DataTable tabela = (DataTable)ViewState["tabela"];
 
-            for (int i = 0; i < tabela.Rows.Count; i++)
+            for (int j = 0; j < tabela.Rows.Count; j++)
             {
-                if (tabela.Rows[i]["inicio"] == DBNull.Value || tabela.Rows[i]["fim"] == DBNull.Value
-                    || (TimeSpan)tabela.Rows[i]["inicio"] >= (TimeSpan)tabela.Rows[i]["fim"])
+                if (tabela.Rows[j]["inicio"] == DBNull.Value || tabela.Rows[j]["fim"] == DBNull.Value
+                    || (TimeSpan)tabela.Rows[j]["inicio"] >= (TimeSpan)tabela.Rows[j]["fim"])
                 {
                     lblMensagem.Text = "Horários inválidos!";
                     return;
                 }
-                else if ((TimeSpan)tabela.Rows[i]["inicio"] > new TimeSpan(23, 0, 0) 
-                    || (TimeSpan)tabela.Rows[i]["inicio"] < new TimeSpan(5, 0, 0) 
-                    || (TimeSpan)tabela.Rows[i]["fim"] > new TimeSpan(23, 0, 0) 
-                    || (TimeSpan)tabela.Rows[i]["fim"] < new TimeSpan(5, 0, 0))
+                else if ((TimeSpan)tabela.Rows[j]["inicio"] > new TimeSpan(23, 0, 0)
+                    || (TimeSpan)tabela.Rows[j]["inicio"] < new TimeSpan(5, 0, 0)
+                    || (TimeSpan)tabela.Rows[j]["fim"] > new TimeSpan(23, 0, 0)
+                    || (TimeSpan)tabela.Rows[j]["fim"] < new TimeSpan(5, 0, 0))
                 {
                     lblMensagem.Text = "Horário(s) fora do intervalo permitido (5h a 23h)!";
                     return;
                 }
-            }
-
-            string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
-            SqlConnection conexao = new SqlConnection(cs);
-            int id_aluno = 1;
-            try
-            {
-                conexao.Open();
-                for (int i = 0; i < tabela.Rows.Count; i++)
+                else if ((TimeSpan)tabela.Rows[j]["fim"] - (TimeSpan)tabela.Rows[j]["inicio"] != new TimeSpan(0, 50, 0))
                 {
-                    if (tabela.Rows[i]["id_disponibilidade"] == DBNull.Value)
+                    lblMensagem.Text = "Os horários devem ter uma duração de 50 minutos!";
+                    return;
+                }
+             }
+                string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
+                SqlConnection conexao = new SqlConnection(cs);
+                int id_aluno = 1;
+                try
+                {
+                    conexao.Open();
+                    for (int i = 0; i < tabela.Rows.Count; i++)
                     {
-                        SqlCommand comando = new SqlCommand("EXEC InserirDisponibilidade @dia_semana, @inicio, @fim, @id_aluno", conexao);
-                        comando.CommandType = CommandType.StoredProcedure;
+                        if (tabela.Rows[i]["id_disponibilidade"] == DBNull.Value)
+                        {
+                            SqlCommand comando = new SqlCommand("EXEC InserirDisponibilidade @dia_semana, @inicio, @fim, @id_aluno", conexao);
+                            comando.CommandType = CommandType.StoredProcedure;
 
-                        comando.Parameters.AddWithValue("@dia_semana", tabela.Rows[i]["dia_semana"]);
-                        comando.Parameters.AddWithValue("@inicio", tabela.Rows[i]["inicio"]);
-                        comando.Parameters.AddWithValue("@fim", tabela.Rows[i]["fim"]);
-                        comando.Parameters.AddWithValue("@id_aluno", id_aluno);
+                            comando.Parameters.AddWithValue("@dia_semana", tabela.Rows[i]["dia_semana"]);
+                            comando.Parameters.AddWithValue("@inicio", tabela.Rows[i]["inicio"]);
+                            comando.Parameters.AddWithValue("@fim", tabela.Rows[i]["fim"]);
+                            comando.Parameters.AddWithValue("@id_aluno", id_aluno);
 
-                        comando.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        SqlCommand comando = new SqlCommand("EXEC AtualizarDisponibilidade @id_disponibilidade, @dia_semana, @inicio, @fim, @id_aluno", conexao);
-                        comando.CommandType = CommandType.StoredProcedure;
+                            comando.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            SqlCommand comando = new SqlCommand("EXEC AtualizarDisponibilidade @id_disponibilidade, @dia_semana, @inicio, @fim, @id_aluno", conexao);
+                            comando.CommandType = CommandType.StoredProcedure;
 
-                        comando.Parameters.AddWithValue("@id_disponibilidade", tabela.Rows[i]["id_disponibilidade"]);
-                        comando.Parameters.AddWithValue("@dia_semana", tabela.Rows[i]["dia_semana"]);
-                        comando.Parameters.AddWithValue("@inicio", tabela.Rows[i]["inicio"]);
-                        comando.Parameters.AddWithValue("@fim", tabela.Rows[i]["fim"]);
-                        comando.Parameters.AddWithValue("@id_aluno", id_aluno);
+                            comando.Parameters.AddWithValue("@id_disponibilidade", tabela.Rows[i]["id_disponibilidade"]);
+                            comando.Parameters.AddWithValue("@dia_semana", tabela.Rows[i]["dia_semana"]);
+                            comando.Parameters.AddWithValue("@inicio", tabela.Rows[i]["inicio"]);
+                            comando.Parameters.AddWithValue("@fim", tabela.Rows[i]["fim"]);
+                            comando.Parameters.AddWithValue("@id_aluno", id_aluno);
 
-                        comando.ExecuteNonQuery();
+                            comando.ExecuteNonQuery();
+                        }
                     }
                 }
-            }
-            finally
-            {
-                conexao.Close();
-            }
+                finally
+                {
+                    conexao.Close();
+                }
         }
     }
 }

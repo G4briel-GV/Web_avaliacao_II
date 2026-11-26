@@ -7,9 +7,9 @@ namespace TelaAluno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["tipo_usuario"] == null)
+            if (Session["tipo_usuario"] == null || Session["tipo_usuario"].ToString() == "coordenacao")
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
                 return;
             }
             if (!IsPostBack)

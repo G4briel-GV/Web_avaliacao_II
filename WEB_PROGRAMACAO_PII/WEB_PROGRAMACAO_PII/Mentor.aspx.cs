@@ -16,7 +16,7 @@ namespace WEB_PROGRAMACAO_PII
         {
             if (verificarLogin())
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
                 return;
             }
             if (!IsPostBack)

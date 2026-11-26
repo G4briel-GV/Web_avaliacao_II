@@ -15,9 +15,9 @@ namespace TelaAluno
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id_aluno"] == null)
+            if (Session["id_aluno"] == null || Session["tipo_usuario"].ToString() == "coordenacao")
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
                 return;
             }
 

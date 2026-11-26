@@ -13,7 +13,7 @@ namespace WEB_PROGRAMACAO_PII
             {
                 if (Session["id_aluno"] == null)
                 {
-                    Response.Redirect("Login.aspx", false);
+                    Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }

@@ -43,6 +43,10 @@ namespace WEB_PROGRAMACAO_PII
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["id_aluno"] == null || Session["tipo_usuario"].ToString() != "mentor")
+            {
+                Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
+            }
             if (!IsPostBack)
             {
                 carregarHorarios();

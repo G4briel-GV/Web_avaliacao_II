@@ -19,6 +19,7 @@ namespace WEB_PROGRAMACAO_PII
         // Botão "Avançar"
         protected void btnAvancar_Click(object sender, EventArgs e)
         {
+            string destino = Request.QueryString["returnUrl"];
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
 
@@ -68,13 +69,13 @@ namespace WEB_PROGRAMACAO_PII
                 if (resultado.Rows[0]["mentor"].ToString() == "S")
                 {
                     Session["tipo_usuario"] = "mentor";
-                    Response.Redirect("Mentor.aspx", false);
+                    Response.Redirect(destino);
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
                     Session["tipo_usuario"] = "aluno";
-                    Response.Redirect("TelaAluno.aspx", false);
+                    Response.Redirect(destino);
                     Context.ApplicationInstance.CompleteRequest();
                 }
             }

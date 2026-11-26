@@ -68,12 +68,20 @@ namespace WEB_PROGRAMACAO_PII
                 Session["id_aluno"] = Convert.ToInt32(resultado.Rows[0]["id_aluno"]);
                 if (resultado.Rows[0]["mentor"].ToString() == "S")
                 {
+                    if (destino == null || destino == "")
+                    {
+                        destino = "Mentor.aspx";
+                    }
                     Session["tipo_usuario"] = "mentor";
                     Response.Redirect(destino);
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
+                    if (destino == null || destino == "")
+                    {
+                        destino = "TelaAluno.aspx";
+                    }
                     Session["tipo_usuario"] = "aluno";
                     Response.Redirect(destino);
                     Context.ApplicationInstance.CompleteRequest();

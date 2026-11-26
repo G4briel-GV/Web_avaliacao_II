@@ -14,12 +14,24 @@ namespace WEB_PROGRAMACAO_PII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (verificarLogin())
+            {
+                Response.Redirect("Login.aspx");
+                return;
+            }
             if (!IsPostBack)
             {
                 carregarAlunos();
             }
         }
-
+        private Boolean verificarLogin()
+        {
+            if (Session["id_usuario"] == null || Session["tipo_usuario"] == null || Session["tipo_usuario"].ToString() != "mentor")
+            {
+                return true;
+            }
+            return false;
+        }
         private void carregarAlunos()
         {
             int id_mentoria = 1;

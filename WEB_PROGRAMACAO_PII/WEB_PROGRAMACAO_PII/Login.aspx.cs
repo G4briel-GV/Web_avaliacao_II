@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Web.UI;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace WEB_PROGRAMACAO_PII
 {
@@ -26,22 +29,59 @@ namespace WEB_PROGRAMACAO_PII
                 return;
             }
 
-            // Validação inicial por domínio (substituir pela chamada ao banco de dados do grupo)
-            if (email.EndsWith("@cps.sp.gov.br", StringComparison.OrdinalIgnoreCase))
+            string cs = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
+            SqlConnection conexao = new SqlConnection(cs);
+            DataTable resultado = new DataTable();
+            try
             {
-                Session["UsuarioEmail"] = email;
-                Response.Redirect("Mentor.aspx");
+                SqlCommand comando = new SqlCommand("EXEC ValidarLogin @email, @senha", conexao);
+                comando.Parameters.AddWithValue("@email", email);
+                comando.Parameters.AddWithValue("@senha", senha);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(resultado);
             }
-            else if (email.EndsWith("@aluno.cps.sp.gov.br", StringComparison.OrdinalIgnoreCase))
+            finally
             {
-                Session["UsuarioEmail"] = email;
-                Response.Redirect("Principal.aspx");
+                conexao.Close();
+            }
+            if (resultado.Rows.Count == 0)
+            {
+                lblMensagem.Text = "E-mail ou senha incorretos.";
+                lblMensagem.Visible = true;
+                return;
+            }
+            
+            Session.Clear();
+            Session["id_usuario"] = Convert.ToInt32(resultado.Rows[0]["id_usuario"]);
+
+            if (resultado.Rows[0]["id_aluno"] != DBNull.Value)
+            {
+                Session["id_aluno"] = Convert.ToInt32(resultado.Rows[0]["id_aluno"]);
+                if (resultado.Rows[0]["mentor"].ToString() == "S")
+                {
+                    Session["tipo_usuario"] = "mentor";
+                    Response.Redirect("Mentor.aspx");
+                }
+                else
+                {
+                    Session["tipo_usuario"] = "aluno";
+                    Response.Redirect("TelaAluno.aspx");
+                }
+            } 
+            else if (resultado.Rows[0]["id_coordenacao"] != DBNull.Value)
+            {
+                Session["id_coordenacao"] = Convert.ToInt32(resultado.Rows[0]["id_coordenacao"]);
+                Session["tipo_usuario"] = "coordenacao";
+                Response.Redirect("Diretoria.aspx");
             }
             else
             {
-                lblMensagem.Text = "Utilize um e-mail institucional válido (@aluno.cps.sp.gov.br ou @cps.sp.gov.br).";
+                Session.Clear();
+                lblMensagem.Text = "Usuário sem perfil de acesso. Procure a secretaria.";
                 lblMensagem.Visible = true;
             }
+
+
         }
 
         // Link "Esqueci a senha."
@@ -49,32 +89,6 @@ namespace WEB_PROGRAMACAO_PII
         {
             lblMensagem.Text = "Entre em contato com a secretaria ou coordenação do curso para redefinir sua senha.";
             lblMensagem.Visible = true;
-        }
-
-        protected void lnkAcessoDiretoria_Click(object sender, EventArgs e)
-        {
-            string email = txtEmail.Text.Trim();
-            string senha = txtSenha.Text.Trim();
-
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
-            {
-                lblMensagem.Text = "Informe o e-mail e a senha da diretoria nos campos acima antes de acessar.";
-                lblMensagem.Visible = true;
-                return;
-            }
-
-            // Valida se o e-mail pertence à diretoria/coordenação (ajustar com a consulta ao banco depois)
-            if (email.EndsWith("@cps.sp.gov.br", StringComparison.OrdinalIgnoreCase) && senha == "admin123")
-            {
-                Session["UsuarioEmail"] = email;
-                Session["PerfilAcesso"] = "Diretoria";
-                Response.Redirect("Diretoria.aspx");
-            }
-            else
-            {
-                lblMensagem.Text = "Acesso restrito: credenciais inválidas para o perfil da diretoria.";
-                lblMensagem.Visible = true;
-            }
         }
     }
 }

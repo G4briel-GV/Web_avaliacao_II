@@ -16,7 +16,7 @@ namespace TelaAluno
         {
             if (Session["AlunoId"] == null)
             {
-                Response.Redirect("TelaLogin.aspx");
+                Response.Redirect("Login.aspx");
                 return;
             }
 

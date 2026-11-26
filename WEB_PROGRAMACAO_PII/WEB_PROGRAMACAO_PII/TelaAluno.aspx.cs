@@ -7,6 +7,11 @@ namespace TelaAluno
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["tipo_usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
             if (!IsPostBack)
             {
                 // Aqui vão as conexões com o banco

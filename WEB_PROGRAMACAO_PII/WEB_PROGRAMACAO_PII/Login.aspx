@@ -418,9 +418,6 @@
                         <p class="texto-apoio">
                             Sua jornada de aprendizado continua aqui.
                         </p>
-                        <asp:LinkButton ID="lnkAcessoDiretoria" runat="server" CssClass="link-diretoria" OnClick="lnkAcessoDiretoria_Click">
-                            Acesso da diretoria
-                        </asp:LinkButton>
                     </div>
                 </section>
 

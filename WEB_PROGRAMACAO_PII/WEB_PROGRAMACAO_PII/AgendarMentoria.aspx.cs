@@ -15,7 +15,8 @@ namespace TelaAluno
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["id_aluno"] == null || Session["tipo_usuario"].ToString() == "coordenacao")
+            if (Session["id_aluno"] == null ||
+                (Session["tipo_usuario"] != null && Session["tipo_usuario"].ToString() == "coordenacao"))
             {
                 Response.Redirect("Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
                 return;
@@ -24,15 +25,13 @@ namespace TelaAluno
             if (!IsPostBack)
             {
                 CarregarMentores();
-                ddlDisciplina.Items.Add(new ListItem("-- Selecione o mentor --", "0"));
-                ddlDia.Items.Add(new ListItem("-- Selecione o mentor --", "0"));
-                ddlHorario.Items.Add(new ListItem("-- Selecione o dia --", "0"));
             }
         }
 
         private void CarregarMentores()
         {
             ddlMentor.Items.Clear();
+
             using (SqlConnection conn = new SqlConnection(connStr))
             using (SqlCommand cmd = new SqlCommand("SELECT id_aluno, nome FROM Aluno WHERE mentor = 'S' ORDER BY nome", conn))
             {
@@ -45,49 +44,44 @@ namespace TelaAluno
                     ddlMentor.DataBind();
                 }
             }
-            ddlMentor.Items.Insert(0, new ListItem("-- Selecione um mentor --", "0"));
+
+            ddlMentor.Items.Insert(0, new ListItem("", "0"));
         }
 
         protected void ddlMentor_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblMensagem.Visible = false;
-            ddlDisciplina.Items.Clear();
+            ddlMateria.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
 
-            if (ddlMentor.SelectedValue == "0")
-            {
-                ddlDisciplina.Items.Add(new ListItem("-- Selecione o mentor --", "0"));
-                ddlDia.Items.Add(new ListItem("-- Selecione o mentor --", "0"));
-                ddlHorario.Items.Add(new ListItem("-- Selecione o dia --", "0"));
-                return;
-            }
+            if (ddlMentor.SelectedValue == "0") return;
 
             int idMentor = Convert.ToInt32(ddlMentor.SelectedValue);
-            HashSet<string> diasSemanaDisponiveis = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            HashSet<string> diasDisponiveis = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
-                string sqlDisc = @"SELECT m.id_materia, m.nome
-                                   FROM Materia m
-                                   INNER JOIN mentor_materia md ON m.id_materia = md.id_materia
-                                   WHERE md.id_aluno = @idMentor
-                                   ORDER BY m.nome";
+                string sqlMateria = @"SELECT m.id_materia, m.nome
+                                      FROM Materia m
+                                      INNER JOIN mentor_materia md ON m.id_materia = md.id_materia
+                                      WHERE md.id_aluno = @idMentor
+                                      ORDER BY m.nome";
 
-                using (SqlCommand cmd = new SqlCommand(sqlDisc, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlMateria, conn))
                 {
                     cmd.Parameters.AddWithValue("@idMentor", idMentor);
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        ddlDisciplina.DataSource = dr;
-                        ddlDisciplina.DataTextField = "nome";
-                        ddlDisciplina.DataValueField = "id_materia";
-                        ddlDisciplina.DataBind();
+                        ddlMateria.DataSource = dr;
+                        ddlMateria.DataTextField = "nome";
+                        ddlMateria.DataValueField = "id_materia";
+                        ddlMateria.DataBind();
                     }
                 }
-                ddlDisciplina.Items.Insert(0, new ListItem("-- Selecione a disciplina --", "0"));
+                ddlMateria.Items.Insert(0, new ListItem("", "0"));
 
                 string sqlDias = @"SELECT DISTINCT LOWER(LTRIM(RTRIM(dia_semana))) AS dia_semana
                                    FROM Disponibilidade
@@ -100,45 +94,33 @@ namespace TelaAluno
                     {
                         while (dr.Read())
                         {
-                            diasSemanaDisponiveis.Add(dr["dia_semana"].ToString());
+                            diasDisponiveis.Add(dr["dia_semana"].ToString());
                         }
                     }
                 }
             }
 
-            // Gera os próximos 14 dias que coincidem com os dias da semana do mentor
             DateTime hoje = DateTime.Today;
             for (int i = 0; i < 14; i++)
             {
                 DateTime dataFutura = hoje.AddDays(i);
                 string siglaDia = ObterSiglaDiaSemana(dataFutura.DayOfWeek);
 
-                if (diasSemanaDisponiveis.Contains(siglaDia))
+                if (diasDisponiveis.Contains(siglaDia))
                 {
-                    string texto = $"{dataFutura:dd/MM/yyyy} ({siglaDia})";
-                    ddlDia.Items.Add(new ListItem(texto, dataFutura.ToString("yyyy-MM-dd")));
+                    ddlDia.Items.Add(new ListItem($"{dataFutura:dd/MM/yyyy} ({siglaDia})", dataFutura.ToString("yyyy-MM-dd")));
                 }
             }
-
-            ddlDia.Items.Insert(0, new ListItem("-- Selecione o dia --", "0"));
-            ddlHorario.Items.Add(new ListItem("-- Selecione o dia --", "0"));
+            ddlDia.Items.Insert(0, new ListItem("", "0"));
         }
 
         protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblMensagem.Visible = false;
-            CarregarHorariosDisponiveis();
-        }
-
-        private void CarregarHorariosDisponiveis()
-        {
             ddlHorario.Items.Clear();
 
-            if (ddlMentor.SelectedValue == "0" || ddlDia.SelectedValue == "0")
-            {
-                ddlHorario.Items.Add(new ListItem("-- Selecione o dia --", "0"));
+            if (ddlMentor.SelectedValue == "0" || ddlDia.SelectedValue == "0" || string.IsNullOrEmpty(ddlDia.SelectedValue))
                 return;
-            }
 
             DateTime dataSelecionada = Convert.ToDateTime(ddlDia.SelectedValue).Date;
             string siglaDia = ObterSiglaDiaSemana(dataSelecionada.DayOfWeek);
@@ -176,15 +158,16 @@ namespace TelaAluno
                 }
             }
 
-            ddlHorario.Items.Insert(0, new ListItem("-- Selecione o horário --", "0"));
+            ddlHorario.Items.Insert(0, new ListItem("", "0"));
         }
 
         protected void BtnAgendar_Click(object sender, EventArgs e)
         {
-            if (ddlMentor.SelectedValue == "0" || ddlDisciplina.SelectedValue == "0" ||
-                ddlDia.SelectedValue == "0" || ddlHorario.SelectedValue == "0")
+            if (ddlMentor.SelectedValue == "0" || ddlMateria.SelectedValue == "0" ||
+                ddlDia.SelectedValue == "0" || ddlHorario.SelectedValue == "0" ||
+                string.IsNullOrEmpty(ddlHorario.SelectedValue))
             {
-                lblMensagem.Text = "Selecione mentor, disciplina, dia e horário.";
+                lblMensagem.Text = "Selecione mentor, matéria, dia e horário.";
                 lblMensagem.ForeColor = Color.DarkRed;
                 lblMensagem.Visible = true;
                 return;
@@ -210,19 +193,17 @@ namespace TelaAluno
                     cmd.Parameters.Add("@horaFinal", SqlDbType.Time).Value = horaFinal;
                     cmd.Parameters.AddWithValue("@idAluno", Convert.ToInt32(Session["id_aluno"]));
                     cmd.Parameters.AddWithValue("@idMentor", Convert.ToInt32(ddlMentor.SelectedValue));
-                    cmd.Parameters.AddWithValue("@idMateria", Convert.ToInt32(ddlDisciplina.SelectedValue));
+                    cmd.Parameters.AddWithValue("@idMateria", Convert.ToInt32(ddlMateria.SelectedValue));
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
 
-                string nomeAluno = Session["NomeAluno"] != null
+                Session["NomeAluno"] = Session["NomeAluno"] != null
                     ? Session["NomeAluno"].ToString()
                     : BuscarNomeAluno(Convert.ToInt32(Session["id_aluno"]));
-
-                Session["NomeAluno"] = nomeAluno;
                 Session["MentorNome"] = ddlMentor.SelectedItem.Text;
-                Session["DisciplinaNome"] = ddlDisciplina.SelectedItem.Text;
+                Session["MateriaNome"] = ddlMateria.SelectedItem.Text;
                 Session["DataMentoria"] = ddlDia.SelectedItem.Text;
                 Session["HorarioMentoria"] = ddlHorario.SelectedItem.Text;
 
@@ -263,12 +244,7 @@ namespace TelaAluno
                 conn.Open();
 
                 object resultado = cmd.ExecuteScalar();
-                if (resultado == null || resultado == DBNull.Value)
-                {
-                    return "Aluno";
-                }
-                                        
-                return resultado.ToString();
+                return (resultado == null || resultado == DBNull.Value) ? "Aluno" : resultado.ToString();
             }
         }
 

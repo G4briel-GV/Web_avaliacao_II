@@ -51,22 +51,22 @@ namespace TelaAluno
         protected global::System.Web.UI.WebControls.DropDownList ddlMentor;
 
         /// <summary>
-        /// Controle LblDisciplina.
+        /// Controle LblMateria.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDisciplina;
+        protected global::System.Web.UI.WebControls.Label LblMateria;
 
         /// <summary>
-        /// Controle ddlDisciplina.
+        /// Controle ddlMateria.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDisciplina;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMateria;
 
         /// <summary>
         /// Controle LblDia.

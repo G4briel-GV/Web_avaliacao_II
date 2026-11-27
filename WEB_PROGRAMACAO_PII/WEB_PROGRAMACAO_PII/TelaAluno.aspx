@@ -223,38 +223,38 @@
                         <span class="proxima-mentoria">PRÓXIMA MENTORIA</span>
 
                         <h2 class="titulo-mentoria">
-                            <asp:Label ID="LblDisciplina" runat="server" Text="Lógica de programação" />
+                            <asp:Label ID="LblMateria" runat="server" Text="Nenhuma mentoria agendada" />
                         </h2>
 
                         <p class="mentor">
-                            <asp:Label ID="LblMentor" runat="server" Text="Prof. Ricardo Alves" />
+                            <asp:Label ID="LblMentor" runat="server" Text="" />
                         </p>
 
                         <div class="info-mentoria">
                             <div>
                                 <span class="label-info">Data</span>
                                 <span class="valor-info">
-                                    <asp:Label ID="LblDtMentoria" runat="server" Text="19/11/2026" />
+                                    <asp:Label ID="LblDtMentoria" runat="server" Text="" />
                                 </span>
                             </div>
 
                             <div>
                                 <span class="label-info">Dia</span>
                                 <span class="valor-info">
-                                    <asp:Label ID="LblDiaSemana" runat="server" Text="Quinta-feira" />
+                                    <asp:Label ID="LblDiaSemana" runat="server" Text="" />
                                 </span>
                             </div>
 
                             <div>
                                 <span class="label-info">Horário</span>
                                 <span class="valor-info">
-                                    <asp:Label ID="LblHorarioProxima" runat="server" Text="14h às 15h" />
+                                    <asp:Label ID="LblHorarioProxima" runat="server" Text="" />
                                 </span>
                             </div>
                         </div>
 
                         <div class="area-status">
-                            <asp:Label ID="LblStatus" runat="server" Text="Confirmada" CssClass="status-agendamento" />
+                            <asp:Label ID="LblStatus" runat="server" Text="" CssClass="status-agendamento" />
                         </div>
                     </div>
 

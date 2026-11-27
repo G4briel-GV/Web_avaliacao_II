@@ -138,8 +138,8 @@
                </div>
 
                <div class="campo-grupo">
-                   <asp:Label ID="LblDisciplina" runat="server" Text="Selecione a Disciplina"></asp:Label>
-                    <asp:DropDownList ID="ddlDisciplina" runat="server" CssClass="campo-select"></asp:DropDownList>
+                   <asp:Label ID="LblMateria" runat="server" Text="Selecione a Matéria"></asp:Label>
+                    <asp:DropDownList ID="ddlMateria" runat="server" CssClass="campo-select"></asp:DropDownList>
                </div>
 
                <div class="campo-grupo">

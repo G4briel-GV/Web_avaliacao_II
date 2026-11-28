@@ -18,7 +18,7 @@ namespace WEB_PROGRAMACAO_PII
                     return;
                 }
 
-                if (Session["DisciplinaNome"] == null ||
+                if (Session["MateriaNome"] == null ||
                     Session["DataMentoria"] == null ||
                     Session["HorarioMentoria"] == null)
                 {
@@ -29,7 +29,7 @@ namespace WEB_PROGRAMACAO_PII
 
                 string nomeAluno = Session["NomeAluno"] != null ? Session["NomeAluno"].ToString() : "Aluno";
                 string mentor = Session["MentorNome"] != null ? Session["MentorNome"].ToString() : "mentor";
-                string disciplina = Session["DisciplinaNome"].ToString();
+                string disciplina = Session["MateriaNome"].ToString();
                 string data = Session["DataMentoria"].ToString();
                 string horario = Session["HorarioMentoria"].ToString();
 
@@ -43,7 +43,7 @@ namespace WEB_PROGRAMACAO_PII
         {
             Session.Remove("NomeAluno");
             Session.Remove("MentorNome");
-            Session.Remove("DisciplinaNome");
+            Session.Remove("MateriaNome");
             Session.Remove("DataMentoria");
             Session.Remove("HorarioMentoria");
 

@@ -33,85 +33,94 @@ namespace WEB_PROGRAMACAO_PII
         protected global::System.Web.UI.WebControls.Button btnSair;
 
         /// <summary>
-        /// Controle btnExportarRelatorio.
+        /// Controle btnAbrirCadastroMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarRelatorio;
+        protected global::System.Web.UI.WebControls.Button btnAbrirCadastroMentor;
 
         /// <summary>
-        /// Controle lblTotalMentorias.
+        /// Controle pnlCadastroMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalMentorias;
+        protected global::System.Web.UI.WebControls.Panel pnlCadastroMentor;
 
         /// <summary>
-        /// Controle lblRealizadas.
+        /// Controle txtRaMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRealizadas;
+        protected global::System.Web.UI.WebControls.TextBox txtRaMentor;
 
         /// <summary>
-        /// Controle lblFaltaAluno.
+        /// Controle txtDisciplinaMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFaltaAluno;
+        protected global::System.Web.UI.WebControls.TextBox txtDisciplinaMentor;
 
         /// <summary>
-        /// Controle lblFaltaMentor.
+        /// Controle btnSalvarMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFaltaMentor;
+        protected global::System.Web.UI.WebControls.Button btnSalvarMentor;
 
         /// <summary>
-        /// Controle txtFiltroBusca.
+        /// Controle btnCancelarMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroBusca;
+        protected global::System.Web.UI.WebControls.Button btnCancelarMentor;
 
         /// <summary>
-        /// Controle ddlFiltroPeriodo.
+        /// Controle lblMensagemMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroPeriodo;
+        protected global::System.Web.UI.WebControls.Label lblMensagemMentor;
 
         /// <summary>
-        /// Controle ddlFiltroSituacao.
+        /// Controle txtFiltroAluno.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroSituacao;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroAluno;
 
         /// <summary>
-        /// Controle ddlFiltroPresenca.
+        /// Controle ddlFiltroMentor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroPresenca;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroMentor;
+
+        /// <summary>
+        /// Controle btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
         /// Controle btnLimpar.
@@ -123,15 +132,6 @@ namespace WEB_PROGRAMACAO_PII
         protected global::System.Web.UI.WebControls.Button btnLimpar;
 
         /// <summary>
-        /// Controle lblContadorTabela.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContadorTabela;
-
-        /// <summary>
         /// Controle gvMentorias.
         /// </summary>
         /// <remarks>
@@ -141,12 +141,21 @@ namespace WEB_PROGRAMACAO_PII
         protected global::System.Web.UI.WebControls.GridView gvMentorias;
 
         /// <summary>
-        /// Controle lblRodapeExibicao.
+        /// Controle SqlDataSourceMentores.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRodapeExibicao;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceMentores;
+
+        /// <summary>
+        /// Controle SqlDataSource1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

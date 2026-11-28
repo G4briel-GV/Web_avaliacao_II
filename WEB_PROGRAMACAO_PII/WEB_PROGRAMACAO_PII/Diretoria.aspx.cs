@@ -1,199 +1,201 @@
 ﻿using System;
-using System.Data;
-using System.Text;
-using System.Web.UI;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 
 namespace WEB_PROGRAMACAO_PII
 {
+    // A palavra "partial" indica que esta classe se junta ao arquivo visual Diretoria.aspx
     public partial class Diretoria : System.Web.UI.Page
     {
+        // Guarda o endereço do banco de dados ("MinhaConexao") configurado lá no Web.config
+        string conexao = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
+
+
+        // 1. VERIFICAÇÃO DE ACESSO AO ABRIR A PÁGINA
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verifica se existe uma sessão ativa e se o perfil logado é realmente "coordenacao"
             if (Session["tipo_usuario"] == null || Session["tipo_usuario"].ToString() != "coordenacao")
             {
                 Response.Redirect("Login.aspx");
                 return;
             }
-            if (!IsPostBack)
-            {
-                CarregarDados();
-            }
         }
 
-        // Dados de exemplo para testar a tela antes de conectar ao BancoDados.mdf
-        private DataTable ObterDadosExemplo()
+
+        // 2. FILTRAR A GRIDVIEW PASSANDO A STRING SQL
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Id", typeof(int));
-            dt.Columns.Add("Periodo", typeof(string));
-            dt.Columns.Add("Data", typeof(string));
-            dt.Columns.Add("Hora", typeof(string));
-            dt.Columns.Add("Aluno", typeof(string));
-            dt.Columns.Add("Mentor", typeof(string));
-            dt.Columns.Add("Assunto", typeof(string));
-            dt.Columns.Add("PresencaAluno", typeof(string));
-            dt.Columns.Add("PresencaMentor", typeof(string));
-            dt.Columns.Add("Situacao", typeof(string));
-            dt.Columns.Add("FiltroSituacao", typeof(string));
-            dt.Columns.Add("ClasseBadge", typeof(string));
-            dt.Columns.Add("TextoRegistro", typeof(string));
+            // Limpa os parâmetros anteriores antes de montar a nova busca
+            SqlDataSource1.SelectParameters.Clear();
 
-            dt.Rows.Add(1, "16-20-nov-2026", "16/11", "08:00", "Ana Beatriz Lima", "Prof. Ricardo Alves", "Lógica de programação", "Presente", "Presente", "Realizada", "realizada", "badge badge--realizada", "Ver registro");
-            dt.Rows.Add(2, "16-20-nov-2026", "16/11", "09:00", "Lucas Ferreira", "Profa. Camila Rocha", "Banco de dados", "Presente", "Presente", "Realizada", "realizada", "badge badge--realizada", "Ver registro");
-            dt.Rows.Add(3, "16-20-nov-2026", "16/11", "10:00", "Mariana Costa", "Prof. Ricardo Alves", "Lógica de programação", "Ausente", "Presente", "Aluno ausente", "aluno-ausente", "badge badge--ausente", "Ver registro");
-            dt.Rows.Add(4, "16-20-nov-2026", "16/11", "11:00", "Pedro Henrique", "Prof. André Santos", "Matemática", "Presente", "Ausente", "Mentor ausente", "mentor-ausente", "badge badge--ausente", "Ver registro");
-            dt.Rows.Add(5, "16-20-nov-2026", "16/11", "13:00", "Juliana Ribeiro", "Profa. Camila Rocha", "Eng. de software", "Presente", "Presente", "Realizada", "realizada", "badge badge--realizada", "Ver registro");
-            dt.Rows.Add(6, "16-20-nov-2026", "18/11", "14:00", "Rafael Oliveira", "Prof. André Santos", "Matemática", "Pendente", "Pendente", "Agendada", "agendada", "badge badge--agendada", "Registrar presença");
+            // Monta o comando SQL básico como string
+            string sql = @"SELECT 
+                            Mentoria.data,
+                            Aluno.nome AS nome_aluno,
+                            Mentor.nome AS nome_mentor,
+                            Materia.nome AS nome_materia,
+                            Mentoria.status
+                           FROM Mentoria
+                           INNER JOIN Aluno ON Mentoria.id_aluno = Aluno.id_aluno
+                           INNER JOIN Aluno AS Mentor ON Mentoria.id_mentor = Mentor.id_aluno
+                           INNER JOIN Materia ON Mentoria.id_materia = Materia.id_materia
+                           WHERE 1 = 1";
 
-            return dt;
-        }
-
-        // Aplica os filtros dos DropDownLists e da busca no GridView e atualiza os cards
-        private DataView FiltrarTabela()
-        {
-            DataTable dt = ObterDadosExemplo(); // Substituir pelo DataTable retornado da classe de banco do grupo
-            DataView dv = dt.DefaultView;
-
-            string filtro = "1=1";
-
-            if (ddlFiltroPeriodo.SelectedValue != "todos")
+            // Se digitou o nome do aluno, adiciona o filtro pelo nome
+            if (!string.IsNullOrWhiteSpace(txtFiltroAluno.Text))
             {
-                filtro += $" AND Periodo = '{ddlFiltroPeriodo.SelectedValue}'";
+                sql += " AND Aluno.nome LIKE '%' + @aluno + '%'";
+                SqlDataSource1.SelectParameters.Add("aluno", txtFiltroAluno.Text.Trim());
             }
 
-            if (!string.IsNullOrWhiteSpace(txtFiltroBusca.Text))
+            // Se escolheu um mentor diferente de "Todos" ("0"), adiciona o filtro pelo ID do mentor
+            if (ddlFiltroMentor.SelectedValue != "0")
             {
-                string busca = txtFiltroBusca.Text.Replace("'", "''");
-                filtro += $" AND (Aluno LIKE '%{busca}%' OR Mentor LIKE '%{busca}%')";
+                sql += " AND Mentoria.id_mentor = @id_mentor";
+                SqlDataSource1.SelectParameters.Add("id_mentor", ddlFiltroMentor.SelectedValue);
             }
 
-            if (ddlFiltroSituacao.SelectedValue != "todas")
-            {
-                filtro += $" AND FiltroSituacao = '{ddlFiltroSituacao.SelectedValue}'";
-            }
-
-            if (ddlFiltroPresenca.SelectedValue == "falta-aluno")
-                filtro += " AND PresencaAluno = 'Ausente'";
-            else if (ddlFiltroPresenca.SelectedValue == "falta-mentor")
-                filtro += " AND PresencaMentor = 'Ausente'";
-            else if (ddlFiltroPresenca.SelectedValue == "pendente")
-                filtro += " AND (PresencaAluno = 'Pendente' OR PresencaMentor = 'Pendente')";
-
-            dv.RowFilter = filtro;
-            return dv;
-        }
-
-        private void CarregarDados()
-        {
-            DataView dv = FiltrarTabela();
-
-            gvMentorias.DataSource = dv;
+            // Passa a string SQL pronta para o SqlDataSource1 e atualiza a tabela na tela
+            SqlDataSource1.SelectCommand = sql;
             gvMentorias.DataBind();
-
-            int total = dv.Count;
-            int realizadas = 0;
-            int faltaAluno = 0;
-            int faltaMentor = 0;
-
-            foreach (DataRowView row in dv)
-            {
-                if (row["FiltroSituacao"].ToString() == "realizada") realizadas++;
-                if (row["PresencaAluno"].ToString() == "Ausente") faltaAluno++;
-                if (row["PresencaMentor"].ToString() == "Ausente") faltaMentor++;
-            }
-
-            lblTotalMentorias.Text = total.ToString();
-            lblRealizadas.Text = realizadas.ToString();
-            lblFaltaAluno.Text = faltaAluno.ToString();
-            lblFaltaMentor.Text = faltaMentor.ToString();
-
-            lblContadorTabela.Text = $"{total} registros no período";
-            lblRodapeExibicao.Text = $"Exibindo {total} mentorias";
         }
 
-        // Evento compartilhado pela caixa de busca e pelos 3 DropDownLists
-        protected void FiltrarMentorias(object sender, EventArgs e)
-        {
-            CarregarDados();
-        }
-
-        // Botão "Limpar"
+        // Limpa os campos de filtro e recarrega todas as mentorias
         protected void btnLimpar_Click(object sender, EventArgs e)
         {
-            txtFiltroBusca.Text = string.Empty;
-            ddlFiltroPeriodo.SelectedIndex = 0;
-            ddlFiltroSituacao.SelectedIndex = 0;
-            ddlFiltroPresenca.SelectedIndex = 0;
-            CarregarDados();
+            txtFiltroAluno.Text = "";
+            ddlFiltroMentor.SelectedIndex = 0;
+            btnBuscar_Click(sender, e);
         }
 
-        // Botão "Exportar relatório" (gera download em CSV limpo para Excel)
-        protected void btnExportarRelatorio_Click(object sender, EventArgs e)
-        {
-            DataView dv = FiltrarTabela();
-            StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Data;Hora;Aluno;Mentor;Assunto;Presenca Aluno;Presenca Mentor;Situacao");
-            foreach (DataRowView row in dv)
+        // 3. CADASTRO / PROMOÇÃO DE ALUNO PARA MENTOR POR RA + TEXTBOX DE DISCIPLINA
+
+        protected void btnAbrirCadastroMentor_Click(object sender, EventArgs e)
+        {
+            pnlCadastroMentor.Visible = !pnlCadastroMentor.Visible;
+            lblMensagemMentor.Visible = false;
+        }
+
+        protected void btnCancelarMentor_Click(object sender, EventArgs e)
+        {
+            pnlCadastroMentor.Visible = false;
+            txtRaMentor.Text = "";
+            txtDisciplinaMentor.Text = "";
+            lblMensagemMentor.Visible = false;
+        }
+
+        protected void btnSalvarMentor_Click(object sender, EventArgs e)
+        {
+            // Valida se o RA e a disciplina foram informados
+            if (string.IsNullOrWhiteSpace(txtRaMentor.Text) || string.IsNullOrWhiteSpace(txtDisciplinaMentor.Text))
             {
-                sb.AppendLine($"{row["Data"]};{row["Hora"]};{row["Aluno"]};{row["Mentor"]};{row["Assunto"]};{row["PresencaAluno"]};{row["PresencaMentor"]};{row["Situacao"]}");
+                lblMensagemMentor.Text = "Informe o RA do aluno e a disciplina.";
+                lblMensagemMentor.CssClass = "feedback-cadastro feedback-erro";
+                lblMensagemMentor.Visible = true;
+                return;
             }
 
-            Response.Clear();
-            Response.Buffer = true;
-            Response.ContentType = "text/csv";
-            Response.ContentEncoding = Encoding.UTF8;
-            Response.BinaryWrite(Encoding.UTF8.GetPreamble());
-            Response.AddHeader("content-disposition", "attachment;filename=Relatorio_Mentorias.csv");
-            Response.Write(sb.ToString());
-            Response.End();
+            string ra = txtRaMentor.Text.Trim();
+            string disciplina = txtDisciplinaMentor.Text.Trim();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conexao))
+                {
+                    conn.Open();
+
+                    // 1. Busca o aluno no banco pelo RA informado
+                    int idAluno = 0;
+                    string nomeAluno = "";
+                    SqlCommand cmdAluno = new SqlCommand("SELECT id_aluno, nome FROM Aluno WHERE RTRIM(matricula) = @ra", conn);
+                    cmdAluno.Parameters.AddWithValue("@ra", ra);
+
+                    using (SqlDataReader dr = cmdAluno.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            idAluno = Convert.ToInt32(dr["id_aluno"]);
+                            nomeAluno = dr["nome"].ToString();
+                        }
+                    }
+
+                    // Se não encontrou nenhum aluno com esse RA, avisa e para por aqui
+                    if (idAluno == 0)
+                    {
+                        lblMensagemMentor.Text = $"Nenhum aluno encontrado com o RA {ra}.";
+                        lblMensagemMentor.CssClass = "feedback-cadastro feedback-erro";
+                        lblMensagemMentor.Visible = true;
+                        return;
+                    }
+
+                    // 2. Promove o aluno marcando mentor = 'S'
+                    SqlCommand cmdUpdate = new SqlCommand("UPDATE Aluno SET mentor = 'S' WHERE id_aluno = @id", conn);
+                    cmdUpdate.Parameters.AddWithValue("@id", idAluno);
+                    cmdUpdate.ExecuteNonQuery();
+
+                    // 3. Busca o ID da matéria digitada (ou cria a matéria se ainda não existir)
+                    int idMateria = 0;
+                    SqlCommand cmdMat = new SqlCommand("SELECT id_materia FROM Materia WHERE nome = @nome", conn);
+                    cmdMat.Parameters.AddWithValue("@nome", disciplina);
+                    object resultadoMat = cmdMat.ExecuteScalar();
+
+                    if (resultadoMat != null)
+                    {
+                        idMateria = Convert.ToInt32(resultadoMat);
+                    }
+                    else
+                    {
+                        SqlCommand cmdNovaMat = new SqlCommand("INSERT INTO Materia (nome) VALUES (@nome); SELECT SCOPE_IDENTITY();", conn);
+                        cmdNovaMat.Parameters.AddWithValue("@nome", disciplina);
+                        idMateria = Convert.ToInt32(cmdNovaMat.ExecuteScalar());
+                    }
+
+                    // 4. Vincula o aluno à matéria (se ainda não estiver vinculado)
+                    SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(*) FROM mentor_materia WHERE id_aluno = @aluno AND id_materia = @mat", conn);
+                    cmdCheck.Parameters.AddWithValue("@aluno", idAluno);
+                    cmdCheck.Parameters.AddWithValue("@mat", idMateria);
+
+                    if (Convert.ToInt32(cmdCheck.ExecuteScalar()) == 0)
+                    {
+                        SqlCommand cmdVinc = new SqlCommand("INSERT INTO mentor_materia (id_aluno, id_materia) VALUES (@aluno, @mat)", conn);
+                        cmdVinc.Parameters.AddWithValue("@aluno", idAluno);
+                        cmdVinc.Parameters.AddWithValue("@mat", idMateria);
+                        cmdVinc.ExecuteNonQuery();
+                    }
+
+                    lblMensagemMentor.Text = $"Mentor cadastrado com sucesso: {nomeAluno} ({disciplina})!";
+                    lblMensagemMentor.CssClass = "feedback-cadastro feedback-sucesso";
+                    lblMensagemMentor.Visible = true;
+                }
+
+                // Limpa os campos e atualiza o DropDownList de filtro de mentores
+                txtRaMentor.Text = "";
+                txtDisciplinaMentor.Text = "";
+
+                ddlFiltroMentor.Items.Clear();
+                ddlFiltroMentor.Items.Add(new ListItem("Todos os mentores", "0"));
+                ddlFiltroMentor.DataBind();
+            }
+            catch (Exception ex)
+            {
+                lblMensagemMentor.Text = "Erro: " + ex.Message;
+                lblMensagemMentor.CssClass = "feedback-cadastro feedback-erro";
+                lblMensagemMentor.Visible = true;
+            }
         }
 
-        // Botão "Sair"
+        // =========================================================================
+        // 4. BOTÃO SAIR (LOGOUT)
+        // =========================================================================
         protected void btnSair_Click(object sender, EventArgs e)
         {
-            Session.Clear();
             Session.Abandon();
             Response.Redirect("Login.aspx");
-        }
-
-        // Destaca em vermelho as linhas e células onde houve ausência no GridView
-        protected void gvMentorias_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                string presencaAluno = DataBinder.Eval(e.Row.DataItem, "PresencaAluno").ToString();
-                string presencaMentor = DataBinder.Eval(e.Row.DataItem, "PresencaMentor").ToString();
-
-                if (presencaAluno == "Ausente")
-                {
-                    e.Row.CssClass = "linha-alerta";
-                    e.Row.Cells[4].CssClass = "texto-ausente";
-                }
-
-                if (presencaMentor == "Ausente")
-                {
-                    e.Row.CssClass = "linha-alerta";
-                    e.Row.Cells[5].CssClass = "texto-ausente";
-                }
-            }
-        }
-
-        // Clique nos links "Ver registro" ou "Registrar presença" dentro do GridView
-        protected void gvMentorias_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "VerRegistro")
-            {
-                string idMentoria = e.CommandArgument.ToString();
-                // Aqui vocês podem redirecionar para a tela de detalhes passando o ID, ex:
-                // Response.Redirect($"RegistroMentoria.aspx?id={idMentoria}");
-            }
-        }
-
-        protected void Fi(object sender, EventArgs e)
-        {
-
         }
     }
 }

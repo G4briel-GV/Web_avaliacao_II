@@ -22,7 +22,7 @@
             color: #465d67;
         }
 
-        /* Cabeçalho institucional fixo (padrão do sistema) */
+        /* Cabeçalho institucional fixo */
         .pagina-controle-mentorias .cabecalho {
             position: fixed;
             top: 0;
@@ -53,14 +53,6 @@
         .pagina-controle-mentorias .logo-fatec-cruzeiro {
             width: 154px;
             height: 74px;
-            object-fit: cover;
-        }
-
-        .pagina-controle-mentorias .logo-centro-paula {
-            width: 77px;
-            height: 52px;
-            margin-left: -15px;
-            aspect-ratio: 1.55;
             object-fit: cover;
         }
 
@@ -150,7 +142,7 @@
             color: #9aa6ac;
         }
 
-        /* Título e botão principal */
+        /* Título e ação principal */
         .pagina-controle-mentorias .topo-pagina {
             display: flex;
             align-items: center;
@@ -181,7 +173,7 @@
             align-items: center;
             justify-content: center;
             height: 44px;
-            padding: 0 28px;
+            padding: 0 24px;
             background-color: #ad0f0a;
             border: none;
             border-radius: 8px;
@@ -199,64 +191,59 @@
             background-color: #920c08;
         }
 
-        /* Cards de métricas */
-        .pagina-controle-mentorias .cards-metricas {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+        /* Painel de cadastro de mentor */
+        .pagina-controle-mentorias .card-cadastro-mentor {
+            background-color: #ffffff;
+            border: 1px solid #dde3e6;
+            border-left: 4px solid #ad0f0a;
+            border-radius: 10px;
+            padding: 20px 24px;
             margin-bottom: 24px;
         }
 
-        .pagina-controle-mentorias .card-metrica {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 88px;
-            padding: 16px 20px;
-            background-color: #ffffff;
-            border: 1px solid #dde3e6;
-            border-radius: 8px;
-        }
-
-        .pagina-controle-mentorias .card-metrica--alerta::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 14px;
-            bottom: 14px;
-            width: 3px;
-            background-color: #ad0f0a;
-            border-radius: 0 2px 2px 0;
-        }
-
-        .pagina-controle-mentorias .card-metrica-titulo {
-            font-family: "Arimo-Regular", Helvetica, Arial, sans-serif;
-            font-weight: 400;
-            font-size: 13px;
-            line-height: 18px;
-            color: #64747c;
-        }
-
-        .pagina-controle-mentorias .card-metrica-valor {
+        .pagina-controle-mentorias .card-cadastro-titulo {
             font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
             font-weight: 700;
-            font-size: 28px;
-            line-height: 34px;
+            font-size: 17px;
+            line-height: 24px;
             color: #465d67;
-            margin-top: 8px;
+            margin-bottom: 4px;
         }
 
-        .pagina-controle-mentorias .card-metrica-valor--alerta {
+        .pagina-controle-mentorias .card-cadastro-subtitulo {
+            font-size: 13px;
+            color: #64747c;
+            margin-bottom: 16px;
+        }
+
+        .pagina-controle-mentorias .form-cadastro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr auto auto;
+            align-items: end;
+            gap: 12px;
+        }
+
+        .pagina-controle-mentorias .feedback-cadastro {
+            display: block;
+            margin-top: 12px;
+            font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .pagina-controle-mentorias .feedback-sucesso {
+            color: #2e6f40;
+        }
+
+        .pagina-controle-mentorias .feedback-erro {
             color: #ad0f0a;
         }
 
-        /* Barra de filtros */
+        /* Barra de filtros: TextBox (Aluno) + DropDownList (Mentor) + Botões */
         .pagina-controle-mentorias .barra-filtros {
             display: grid;
-            grid-template-columns: 1.45fr 1fr 1fr 1fr auto;
+            grid-template-columns: 1.2fr 1fr auto auto;
             align-items: end;
-            gap: 16px;
+            gap: 12px;
             margin-bottom: 24px;
         }
 
@@ -276,8 +263,8 @@
 
         .pagina-controle-mentorias .campo-controle {
             width: 100%;
-            height: 38px;
-            padding: 0 12px;
+            height: 40px;
+            padding: 0 14px;
             background-color: #ffffff;
             border: 1px solid #dde3e6;
             border-radius: 8px;
@@ -306,20 +293,42 @@
             cursor: pointer;
         }
 
-        .pagina-controle-mentorias .btn-limpar {
-            height: 38px;
-            padding: 0 12px;
-            background: transparent;
+        .pagina-controle-mentorias .btn-buscar {
+            height: 40px;
+            padding: 0 22px;
+            background-color: #ad0f0a;
             border: none;
+            border-radius: 8px;
+            font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #ffffff;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.15s ease;
+        }
+
+        .pagina-controle-mentorias .btn-buscar:hover {
+            background-color: #920c08;
+        }
+
+        .pagina-controle-mentorias .btn-limpar {
+            height: 40px;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 1px solid #dde3e6;
+            border-radius: 8px;
             font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
             font-weight: 700;
             font-size: 13px;
             color: #465d67;
             cursor: pointer;
             white-space: nowrap;
+            transition: all 0.15s ease;
         }
 
         .pagina-controle-mentorias .btn-limpar:hover {
+            border-color: #ad0f0a;
             color: #ad0f0a;
         }
 
@@ -332,9 +341,6 @@
         }
 
         .pagina-controle-mentorias .card-tabela-cabecalho {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             padding: 20px 24px;
         }
 
@@ -344,13 +350,6 @@
             font-size: 19px;
             line-height: 26px;
             color: #465d67;
-        }
-
-        .pagina-controle-mentorias .card-tabela-contador {
-            font-family: "Arimo-Regular", Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            line-height: 16px;
-            color: #64747c;
         }
 
         .pagina-controle-mentorias .tabela-wrapper {
@@ -405,77 +404,28 @@
             border-bottom: none;
         }
 
-        .pagina-controle-mentorias .tabela-mentorias tr.linha-alerta {
-            background-color: #fdf6f6;
-        }
-
-        .pagina-controle-mentorias .celula-data {
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-            line-height: 16px;
-            color: #64747c;
-        }
-
         .pagina-controle-mentorias .celula-destaque {
             color: #465d67;
-        }
-
-        .pagina-controle-mentorias .texto-ausente {
-            font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
             font-weight: 700;
-            color: #ad0f0a;
         }
 
-        /* Badges de situação */
-        .pagina-controle-mentorias .badge {
+        .pagina-controle-mentorias .badge-situacao {
             display: inline-flex;
             align-items: center;
-            width: 132px;
-            height: 28px;
-            padding: 0 12px;
+            padding: 4px 12px;
             border-radius: 6px;
-            font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 16px;
-        }
-
-        .pagina-controle-mentorias .badge--realizada {
-            background-color: #e8f1ec;
-            color: #2e6f40;
-        }
-
-        .pagina-controle-mentorias .badge--ausente {
-            background-color: #f9e2e1;
-            color: #ad0f0a;
-        }
-
-        .pagina-controle-mentorias .badge--agendada {
             background-color: #eceff1;
-            color: #465d67;
-        }
-
-        /* Links de ação na coluna Registro */
-        .pagina-controle-mentorias .link-registro {
             font-family: "Arimo-Bold", Helvetica, Arial, sans-serif;
             font-weight: 700;
             font-size: 12px;
-            line-height: 16px;
             color: #465d67;
-            text-decoration: underline;
-            white-space: nowrap;
-        }
-
-        .pagina-controle-mentorias .link-registro:hover {
-            color: #ad0f0a;
         }
 
         /* Rodapé abaixo da tabela */
         .pagina-controle-mentorias .rodape-listagem {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             margin-top: 14px;
             font-family: "Arimo-Regular", Helvetica, Arial, sans-serif;
             font-size: 12px;
@@ -491,9 +441,7 @@
             .pagina-controle-mentorias .conteudo-principal {
                 padding: 114px 24px 40px;
             }
-            .pagina-controle-mentorias .cards-metricas {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .pagina-controle-mentorias .form-cadastro-grid,
             .pagina-controle-mentorias .barra-filtros {
                 grid-template-columns: 1fr 1fr;
             }
@@ -506,8 +454,8 @@
                 align-items: flex-start;
                 gap: 12px;
             }
-            .pagina-controle-mentorias .cards-metricas,
-            .pagina-controle-mentorias .barra-filtros {
+            .pagina-controle-mentorias .barra-filtros,
+            .pagina-controle-mentorias .form-cadastro-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -525,7 +473,6 @@
                             src="FATEC.png"
                             alt="Fatec Cruzeiro – Prof. Waldomiro May"
                         />
-                       
                         <span class="titulo-sistema">Coordenação</span>
                     </div>
                     <div class="cabecalho-acoes">
@@ -548,147 +495,159 @@
                         <span class="breadcrumb-atual">Mentorias</span>
                     </nav>
 
-                    <!-- Título da página e ação principal -->
+                    <!-- Título da página e botão de cadastro de mentor -->
                     <section class="topo-pagina">
                         <div class="topo-pagina-textos">
                             <h1 class="titulo-pagina">Controle de mentorias</h1>
                             <p class="subtitulo-pagina">
-                                Acompanhe os agendamentos e a presença de alunos e mentores.
+                                Acompanhe os agendamentos, presenças e habilite alunos como mentores.
                             </p>
                         </div>
-                        <asp:Button ID="btnExportarRelatorio" runat="server" Text="Exportar relatório" CssClass="btn-primario" />
+                        <asp:Button
+                            ID="btnAbrirCadastroMentor"
+                            runat="server"
+                            Text="+ Cadastrar mentor"
+                            CssClass="btn-primario"
+                            OnClick="btnAbrirCadastroMentor_Click"
+                        />
                     </section>
 
-                    <!-- Cards de indicadores -->
-                    <section class="cards-metricas" aria-label="Resumo do período">
-                        <article class="card-metrica">
-                            <span class="card-metrica-titulo">Mentorias no período</span>
-                            <asp:Label ID="lblTotalMentorias" runat="server" Text="6" CssClass="card-metrica-valor"></asp:Label>
-                        </article>
-                        <article class="card-metrica">
-                            <span class="card-metrica-titulo">Realizadas</span>
-                            <asp:Label ID="lblRealizadas" runat="server" Text="3" CssClass="card-metrica-valor"></asp:Label>
-                        </article>
-                        <article class="card-metrica card-metrica--alerta">
-                            <span class="card-metrica-titulo">Falta do aluno</span>
-                            <asp:Label ID="lblFaltaAluno" runat="server" Text="1" CssClass="card-metrica-valor card-metrica-valor--alerta"></asp:Label>
-                        </article>
-                        <article class="card-metrica card-metrica--alerta">
-                            <span class="card-metrica-titulo">Falta do mentor</span>
-                            <asp:Label ID="lblFaltaMentor" runat="server" Text="1" CssClass="card-metrica-valor card-metrica-valor--alerta"></asp:Label>
-                        </article>
-                    </section>
+                    <!-- Painel retrátil para habilitar aluno como mentor via RA + TextBox de Disciplina -->
+                    <asp:Panel ID="pnlCadastroMentor" runat="server" Visible="false" CssClass="card-cadastro-mentor">
+                        <h2 class="card-cadastro-titulo">Habilitar aluno como mentor</h2>
+                        <p class="card-cadastro-subtitulo">
+                            Informe o RA do aluno matriculado e digite a disciplina. Ele manterá o acesso de aluno para agendar outras matérias.
+                        </p>
 
-                    <!-- Barra de filtros -->
+                        <div class="form-cadastro-grid">
+                            <div class="campo-filtro">
+                                <label for="txtRaMentor" class="campo-label">RA do aluno</label>
+                                <asp:TextBox
+                                    ID="txtRaMentor"
+                                    runat="server"
+                                    ClientIDMode="Static"
+                                    CssClass="campo-controle"
+                                    placeholder="Digite o RA do aluno...">
+                                </asp:TextBox>
+                            </div>
+
+                            <div class="campo-filtro">
+                                <label for="txtDisciplinaMentor" class="campo-label">Disciplina da mentoria</label>
+                                <asp:TextBox
+                                    ID="txtDisciplinaMentor"
+                                    runat="server"
+                                    ClientIDMode="Static"
+                                    CssClass="campo-controle"
+                                    placeholder="Ex: Banco de Dados, Lógica...">
+                                </asp:TextBox>
+                            </div>
+
+                            <asp:Button ID="btnSalvarMentor" runat="server" Text="Confirmar mentor" CssClass="btn-buscar" OnClick="btnSalvarMentor_Click" />
+                            <asp:Button ID="btnCancelarMentor" runat="server" Text="Cancelar" CssClass="btn-limpar" OnClick="btnCancelarMentor_Click" />
+                        </div>
+
+                        <asp:Label ID="lblMensagemMentor" runat="server" Visible="false" CssClass="feedback-cadastro"></asp:Label>
+                    </asp:Panel>
+
+                    <!-- Barra de filtros: Busca por nome do Aluno + DropDownList de Mentor -->
                     <div class="barra-filtros" aria-label="Filtrar mentorias">
-                        <div class="campo-filtro campo-filtro--busca">
-                            <label for="txtFiltroBusca" class="campo-label">Buscar aluno ou mentor</label>
+                        <div class="campo-filtro">
+                            <label for="txtFiltroAluno" class="campo-label">Buscar por Aluno</label>
                             <asp:TextBox
-                                ID="txtFiltroBusca"
+                                ID="txtFiltroAluno"
                                 runat="server"
                                 ClientIDMode="Static"
                                 CssClass="campo-controle"
-                                placeholder="Digite um nome"
-                                AutoPostBack="true" OnTextChanged="FiltrarMentorias"
-                                >
+                                placeholder="Digite o nome do aluno...">
                             </asp:TextBox>
                         </div>
 
                         <div class="campo-filtro">
-                            <label for="ddlFiltroPeriodo" class="campo-label">Período</label>
-                            <asp:DropDownList ID="ddlFiltroPeriodo" runat="server" ClientIDMode="Static" CssClass="campo-controle campo-select" AutoPostBack="true">
-                                <asp:ListItem Value="16-20-nov-2026" Selected="True">16–20 nov. 2026</asp:ListItem>
-                                <asp:ListItem Value="23-27-nov-2026">23–27 nov. 2026</asp:ListItem>
-                                <asp:ListItem Value="todos">Todos os períodos</asp:ListItem>
+                            <label for="ddlFiltroMentor" class="campo-label">Filtrar por Mentor</label>
+                            <asp:DropDownList
+                                ID="ddlFiltroMentor"
+                                runat="server"
+                                ClientIDMode="Static"
+                                DataSourceID="SqlDataSourceMentores"
+                                DataTextField="nome"
+                                DataValueField="id_aluno"
+                                AppendDataBoundItems="True"
+                                AutoPostBack="True"
+                                OnSelectedIndexChanged="btnBuscar_Click"
+                                CssClass="campo-controle campo-select">
+                                <asp:ListItem Text="Todos os mentores" Value="0" />
                             </asp:DropDownList>
                         </div>
 
-                        <div class="campo-filtro">
-                            <label for="ddlFiltroSituacao" class="campo-label">Situação</label>
-                            <asp:DropDownList ID="ddlFiltroSituacao" runat="server" ClientIDMode="Static" CssClass="campo-controle campo-select" AutoPostBack="true">
-                                <asp:ListItem Value="todas" Selected="True">Todas as situações</asp:ListItem>
-                                <asp:ListItem Value="realizada">Realizada</asp:ListItem>
-                                <asp:ListItem Value="aluno-ausente">Aluno ausente</asp:ListItem>
-                                <asp:ListItem Value="mentor-ausente">Mentor ausente</asp:ListItem>
-                                <asp:ListItem Value="agendada">Agendada</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="campo-filtro">
-                            <label for="ddlFiltroPresenca" class="campo-label">Presença</label>
-                            <asp:DropDownList ID="ddlFiltroPresenca" runat="server" ClientIDMode="Static" CssClass="campo-controle campo-select" AutoPostBack="true" >
-                                <asp:ListItem Value="todos" Selected="True">Alunos e mentores</asp:ListItem>
-                                <asp:ListItem Value="falta-aluno">Falta do aluno</asp:ListItem>
-                                <asp:ListItem Value="falta-mentor">Falta do mentor</asp:ListItem>
-                                <asp:ListItem Value="pendente">Pendente</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-
-                        <asp:Button ID="btnLimpar" runat="server" Text="Limpar" CssClass="btn-limpar" OnClick="btnLimpar_Click"  />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-buscar" OnClick="btnBuscar_Click" />
+                        <asp:Button ID="btnLimpar" runat="server" Text="Limpar" CssClass="btn-limpar" OnClick="btnLimpar_Click" />
                     </div>
 
-                    <!-- Tabela de mentorias -->
+                    <!-- Tabela de mentorias conectada diretamente ao SqlDataSource -->
                     <section class="card-tabela" aria-labelledby="titulo-tabela-mentorias">
                         <header class="card-tabela-cabecalho">
                             <h2 id="titulo-tabela-mentorias" class="card-tabela-titulo">
                                 Mentorias do curso
                             </h2>
-                            <asp:Label ID="lblContadorTabela" runat="server" Text="6 registros no período" CssClass="card-tabela-contador"></asp:Label>
                         </header>
 
                         <div class="tabela-wrapper">
                             <asp:GridView
                                 ID="gvMentorias"
                                 runat="server"
+                                DataSourceID="SqlDataSource1"
                                 AutoGenerateColumns="False"
                                 CssClass="tabela-mentorias"
                                 GridLines="None"
                                 BorderStyle="None"
                                 BorderWidth="0"
+                                EmptyDataText="Nenhuma mentoria encontrada."
                             >
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Data / hora">
-                                        <ItemTemplate>
-                                            <div class="celula-data">
-                                                <span><%# Eval("Data") %></span>
-                                                <span><%# Eval("Hora") %></span>
-                                            </div>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:BoundField DataField="Aluno" HeaderText="Aluno" ItemStyle-CssClass="celula-destaque" />
-                                    <asp:BoundField DataField="Mentor" HeaderText="Mentor" />
-                                    <asp:BoundField DataField="Assunto" HeaderText="Assunto" />
-                                    <asp:BoundField DataField="PresencaAluno" HeaderText="Presença<br />do aluno" HtmlEncode="False" />
-                                    <asp:BoundField DataField="PresencaMentor" HeaderText="Presença<br />do mentor" HtmlEncode="False" />
+                                    <asp:BoundField DataField="data" HeaderText="Data" DataFormatString="{0:dd/MM}" />
+                                    <asp:BoundField DataField="nome_aluno" HeaderText="Aluno" ItemStyle-CssClass="celula-destaque" />
+                                    <asp:BoundField DataField="nome_mentor" HeaderText="Mentor" />
+                                    <asp:BoundField DataField="nome_materia" HeaderText="Assunto" />
 
                                     <asp:TemplateField HeaderText="Situação">
                                         <ItemTemplate>
-                                            <span class='<%# Eval("ClasseBadge") %>'><%# Eval("Situacao") %></span>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Registro">
-                                        <ItemTemplate>
-                                            <asp:LinkButton
-                                                ID="lnkRegistro"
-                                                runat="server"
-                                                CssClass="link-registro"
-                                                CommandName="VerRegistro"
-                                                CommandArgument='<%# Eval("Id") %>'>
-                                                <%# Eval("TextoRegistro") %>
-                                            </asp:LinkButton>
+                                            <span class="badge-situacao"><%# Eval("status") %></span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
+
+                            <!-- SqlDataSource 1: Preenche o DropDownList de Mentores -->
+                            <asp:SqlDataSource
+                                ID="SqlDataSourceMentores"
+                                runat="server"
+                                ConnectionString="<%$ ConnectionStrings:MinhaConexao %>"
+                                SelectCommand="SELECT id_aluno, nome FROM Aluno WHERE mentor = 'S' ORDER BY nome">
+                            </asp:SqlDataSource>
+
+                            <!-- SqlDataSource 2: Preenche a GridView sem a coluna de hora -->
+                            <asp:SqlDataSource
+                                ID="SqlDataSource1"
+                                runat="server"
+                                ConnectionString="<%$ ConnectionStrings:MinhaConexao %>"
+                                SelectCommand="
+                                    SELECT 
+                                        Mentoria.data,
+                                        Aluno.nome AS nome_aluno,
+                                        Mentor.nome AS nome_mentor,
+                                        Materia.nome AS nome_materia,
+                                        Mentoria.status
+                                    FROM Mentoria
+                                    INNER JOIN Aluno ON Mentoria.id_aluno = Aluno.id_aluno
+                                    INNER JOIN Aluno AS Mentor ON Mentoria.id_mentor = Mentor.id_aluno
+                                    INNER JOIN Materia ON Mentoria.id_materia = Materia.id_materia">
+                            </asp:SqlDataSource>
                         </div>
                     </section>
 
-                    <!-- Rodapé informativo da listagem -->
+                    <!-- Rodapé institucional -->
                     <footer class="rodape-listagem">
-                        <asp:Label ID="lblRodapeExibicao" runat="server" Text="Exibindo 6 de 6 mentorias · Dados de exemplo"></asp:Label>
-                        <span>Presenças de aluno e mentor são acompanhadas separadamente.</span>
+                        <span>Controle de mentorias – Coordenação Fatec Cruzeiro.</span>
                     </footer>
                 </div>
             </main>
